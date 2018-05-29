@@ -10,11 +10,11 @@ class Login extends React.Component {
                 <form>
                     <fieldset>
                         <div>
-                            <label for="username">Username</label>
+                            <label htmlFor="username">Username</label>
                             <input type="text" id="username" required />
                         </div>
                         <div>
-                            <label for="password">Password</label>
+                            <label htmlFor="password">Password</label>
                             <input type="text" id="password" required />
                         </div>
                         <p><Link to="/">Forgot Password?</Link></p>
