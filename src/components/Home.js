@@ -1,10 +1,9 @@
 import React from 'react';
 
-
 const Home = () => {
     return (
         <div>
-            <p>Track your scorecards and view real-time leaderboards for social and organized golfing events</p>
+            <p>Create a custom golfing league for you and your friends. Track your rounds and assign points to custom metrics. Whoever has the most points at the end of the 'season' brings home the trophy and bragging rights!</p>
         </div>
     )
 }
