@@ -7,8 +7,11 @@ import {
 import Home from './Home';
 import Register from './Register';
 import Login from './Login';
+import CreateLeague from './CreateLeague';
+import CompletedRounds from './CompletedRounds';
+import Standings from './Standings';
 
-// TODO: Do I use these here?:
+// these are for initial scoreboard idea:
 // import Dashboard from './Dashboard';
 // import Scoreboard from './Scoreboard';
 // import ScorecardSummary from './ScorecardSummary';
@@ -17,19 +20,17 @@ import Login from './Login';
 
 const Router = () => {
     return (
-        <Switch>
-            <Redirect exact from="/" to="/home" />
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-
-            {/* // TODO: Do I use these here?: */}
-            {/* <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/event/:id" component={Scoreboard} />
-            <Route exact path="/event/:id" component={ScorecardSummary} />
-            <Route exact path="/event/:id/scorecard-detail" component={ScorecardDetail} />
-            <Route exact path="/event/:id/leaderboard" component={Leaderboard} /> */}
-        </Switch>
+        <div>
+            <Switch>
+                <Redirect exact from="/" to="/home" />
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+            </Switch>
+            <Route exact path="/dashboard" component={CreateLeague} />
+            <Route exact path="/dashboard" component={CompletedRounds} />
+            <Route exact path="/dashboard" component={Standings} />   
+        </div>
     )
 }
 
