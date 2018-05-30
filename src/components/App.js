@@ -8,6 +8,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <div>
+                <h1>Clash for the Cup</h1>
                 <Navigation />
                 <Router />
             </div>
