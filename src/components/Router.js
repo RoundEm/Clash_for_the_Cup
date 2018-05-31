@@ -7,9 +7,12 @@ import {
 import Home from './Home';
 import Register from './Register';
 import Login from './Login';
-import CreateLeague from './CreateLeague';
+import CreateNewLeague from './CreateNewLeague';
+import ActiveLeagues from './ActiveLeagues';
+import RecordNewRound from './RecordNewRound';
 import CompletedRounds from './CompletedRounds';
 import Standings from './Standings';
+import Dashboard from './Dashboard';
 
 // these are for initial scoreboard idea:
 // import Dashboard from './Dashboard';
@@ -27,11 +30,16 @@ const Router = () => {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
             </Switch>
-            <Route exact path="/dashboard" component={CreateLeague} />
-            <Route exact path="/dashboard" component={CompletedRounds} />
-            <Route exact path="/dashboard" component={Standings} />   
+            
+            <Switch>
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/dashboard/active-leagues" component={ActiveLeagues} />
+                <Route exact path="/dashboard/create-league" component={CreateNewLeague} />
+                <Route exact path="/dashboard/active-leagues/:id" component={Standings} />
+                <Route exact path="/dashboard/active-leagues/:id/record-round" component={RecordNewRound} />  
+            </Switch>
         </div>
-    )
+    );
 }
 
 export default Router;
