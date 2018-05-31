@@ -1,19 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CreateLeague from './CreateLeague';
-import CompletedRounds from './CompletedRounds';
-import RecordNewRound from './RecordNewRound';
-
 
 class Dashboard extends React.Component {
   render() {
     return (
-      <div>
-        <CompletedRounds />
-        <CreateLeague />
-        <CreateNewRound />
-      </div>
-    )
+        <div>
+            <h2><Link to="/dashboard/create-league">Create New League</Link></h2>
+            <h2><Link to="/dashboard/active-leagues">Active Leagues</Link></h2>
+        </div>
+    );
   }
 }
 
