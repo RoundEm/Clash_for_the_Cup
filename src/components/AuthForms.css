@@ -1,48 +1,18 @@
-#login, #register {
+#register, #login {
     width: 425px;
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0 auto;
-    overflow: hidden;
 }
-fieldset label {
-    text-align: left;
-    display: block;
-    margin: 10px 0 5px;
-}
-fieldset {
-    border: none;
-}
-fieldset div, fieldset p {
-    text-align: left;
-    margin: 0 auto;
+#register input, #login input {
     width: 350px;
-}
-h2 {
-    margin: 0 0 15px;
-}
-input {
-    width: 350px;
-    height: 35px;
-    margin: 0 0 10px;
-    padding: 3px;
-    font-size: 1.2em;
-    border: 1px solid grey;
-    border-radius: 5px;
 }
 input#date-of-birth {
     width: 220px;
 }
-button {
-    margin: 20px 0 0;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1em;
-    float: right;
+.auth-form fieldset div, .auth-form fieldset p {
+    text-align: left;
+    margin: 0 auto;
+    width: 350px;
 }
-/* move to index.css?? */
-button:hover {
-    background-color: #E6E6FA;
-    cursor: pointer;
+.auth-form button {
+    float: right;
+    margin: 20px 0 0;
 }
