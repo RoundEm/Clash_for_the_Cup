@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './AuthForms.css';
+import '../index.css';
 
 class Login extends React.Component {
     render() {
         return (
-            <div id="login">
+            <div id="login" className="form-container auth-form">
                 <h2>Login</h2>
                 <form>
                     <fieldset>
@@ -15,7 +16,7 @@ class Login extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type="text" id="password" required />
+                            <input type="password" id="password" required />
                         </div>
                         <p><Link to="/">Forgot Password?</Link></p>
                     </fieldset>

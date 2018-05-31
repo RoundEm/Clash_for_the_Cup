@@ -1,10 +1,11 @@
 import React from 'react';
 import './AuthForms.css';
+import '../index.css';
 
 class Register extends React.Component {
     render() {
         return (
-            <div id="register">
+            <div id="register" className="form-container auth-form">
                 <h2>Register</h2>
                 <form>
                     <fieldset>
@@ -30,7 +31,11 @@ class Register extends React.Component {
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type="text" id="password" required />
+                            <input type="password" id="password" required />
+                        </div>
+                        <div>
+                            <label htmlFor="password-check">Verify Password</label>
+                            <input type="password" id="password-check" required />
                         </div>
                     </fieldset>
                 </form>
