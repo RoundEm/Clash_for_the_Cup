@@ -1,19 +1,22 @@
 import React from 'react';
 
-const RecordNewRound = () => {
+const CreateNewRound = () => {
   return (
     <div>
-        <h2>Record Completed Round</h2>
+        <h2>Create New Round</h2>
         <form>
             <fieldset>
                 <label>Date</label>
                 <input type="date"></input>
                 <label>Course Name</label>
                 <input type="text"></input>
+                <label>Event Name</label>
+                <input type="text"></input>
+                <label>Players</label>
             </fieldset>
         </form>
     </div>
   );
 }
 
-export default RecordNewRound;
+export default CreateNewRound;
