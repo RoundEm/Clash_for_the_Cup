@@ -1,4 +1,5 @@
 import React from 'react';
+import PointsTable from './PointsTable';
 import '../index.css';
 
 class CreateNewLeague extends React.Component {
@@ -21,14 +22,16 @@ class CreateNewLeague extends React.Component {
                 players: [...this.state.players, newPlayer]
             });
             this.player.value = '';
-        };
-        
+            this.player.focus();
+        }
     }
     componentDidUpdate() {
         console.log('this.state.players: ', this.state.players)
     }
-
     render() {
+        const players = this.state.players.map(player => (
+            <li key={player.key}>{player.name}</li>
+        ));
         return (
             <div id="create-new-league" className="form-container">
                 <h2>Create New League</h2>
@@ -36,20 +39,26 @@ class CreateNewLeague extends React.Component {
                     <fieldset>
                         <div>
                             <label>League Name</label>
-                            <input type="text" />
+                            <input type="text" required />
+                            <label>Season End Date</label>
+                            <input type="date" required />
                             <label>Players</label>
                             <input 
                                 type="text" 
+                                id="add-players"
                                 ref={i => this.player = i}
-                                placeholder={'Add Player'}
                              />
-                            <button type="submit">Add Player</button>
+                            <button>Add Player</button>
                             <ul className="player-list">
-
+                                {players}
                             </ul>
+                            <p>Points Settings</p>
+                            <PointsTable />
+
                         </div>
                     </fieldset>
                 </form>
+                <button type="submit">Submit</button>
             </div>
         );
     }
