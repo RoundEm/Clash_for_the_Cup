@@ -8,18 +8,12 @@ import Home from './Home';
 import Register from './Register';
 import Login from './Login';
 import CreateNewLeague from './CreateNewLeague';
-import ActiveLeagues from './ActiveLeagues';
-import RecordNewRound from './RecordNewRound';
+import CreateNewRound from './CreateNewRound';
 import CompletedRounds from './CompletedRounds';
 import Standings from './Standings';
 import Dashboard from './Dashboard';
-
-// these are for initial scoreboard idea:
-// import Dashboard from './Dashboard';
-// import Scoreboard from './Scoreboard';
-// import ScorecardSummary from './ScorecardSummary';
-// import ScorecardDetail from './ScorecardDetail';
-// import Leaderboard from './Leaderboard';
+import PointsTable from './PointsTable';
+import ActiveLeague from './ActiveLeague';
 
 const Router = () => {
     return (
@@ -33,11 +27,12 @@ const Router = () => {
             
             <Switch>
                 <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/dashboard/active-leagues" component={ActiveLeagues} />
                 <Route exact path="/dashboard/create-league" component={CreateNewLeague} />
-                <Route exact path="/dashboard/active-leagues/:id" component={Standings} />
-                <Route exact path="/dashboard/active-leagues/:id/record-round" component={RecordNewRound} />  
             </Switch>
+            {/* <Route exact path="/dashboard/active-leagues/:id" component={Standings} /> */}
+            <Route exact path="/dashboard/active-leagues/:id" component={ActiveLeague} />
+            {/* <Route exact path="/dashboard/active-leagues/:id" component={PointsTable} /> */}
+            <Route exact path="/dashboard/active-leagues/:id/create-round" component={CreateNewRound} />
         </div>
     );
 }
