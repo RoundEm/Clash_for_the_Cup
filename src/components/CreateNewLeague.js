@@ -6,11 +6,11 @@ class CreateNewLeague extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            players: []
+            players: [],
+            removePlayer: ''
         }
-        this.removePlayer = this.removePlayer.bind(this);
     }
-    addPlayer(e) {
+    addPlayer = (e) => {
         e.preventDefault();
         if (this.player.value === "") {
             alert('Please enter a name');
@@ -20,24 +20,26 @@ class CreateNewLeague extends React.Component {
                 key: Date.now()
             }
             this.setState({
-                players: [...this.state.players, newPlayer]
+                players: [...this.state.players, newPlayer]            
             });
             this.player.value = '';
             this.player.focus();
         }
     }
-    removePlayer(key) {  
+    removePlayer = (key) => {  
         this.setState({
             players: this.state.players.filter(player => player.key != key)
         });
-    }
-    componentDidUpdate() {
-        console.log('this.state.players: ', this.state.players)
     }
     render() {
         const players = this.state.players.map(player => (
             <li key={player.key} onClick={() => this.removePlayer(player.key)}>{player.name}</li>
         ));
+        const removePlayerVerbiage = 
+            this.state.players.length === 0 
+            ? '' 
+            : <p>Select player name to remove them</p>;
+
         return (
             <div id="create-new-league" className="form-container">
                 <h2>Create New League</h2>
@@ -55,6 +57,7 @@ class CreateNewLeague extends React.Component {
                                 ref={i => this.player = i}
                              />
                             <button>Add Player</button>
+                            {removePlayerVerbiage}
                             <ul className="player-list">
                                 {players}
                             </ul>
