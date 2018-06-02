@@ -8,6 +8,7 @@ class CreateNewLeague extends React.Component {
         this.state = {
             players: []
         }
+        this.removePlayer = this.removePlayer.bind(this);
     }
     addPlayer(e) {
         e.preventDefault();
@@ -25,12 +26,17 @@ class CreateNewLeague extends React.Component {
             this.player.focus();
         }
     }
+    removePlayer(key) {  
+        this.setState({
+            players: this.state.players.filter(player => player.key != key)
+        });
+    }
     componentDidUpdate() {
         console.log('this.state.players: ', this.state.players)
     }
     render() {
         const players = this.state.players.map(player => (
-            <li key={player.key}>{player.name}</li>
+            <li key={player.key} onClick={() => this.removePlayer(player.key)}>{player.name}</li>
         ));
         return (
             <div id="create-new-league" className="form-container">
@@ -54,7 +60,6 @@ class CreateNewLeague extends React.Component {
                             </ul>
                             <p>Points Settings</p>
                             <PointsTable />
-
                         </div>
                     </fieldset>
                 </form>
