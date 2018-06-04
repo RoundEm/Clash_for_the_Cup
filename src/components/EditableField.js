@@ -1,6 +1,6 @@
 import React from 'react';
-import editIcon from '../assets/013-edit-2.png'
-import closeIcon from '../assets/011-cancel-2.png'
+import editIcon from '../assets/002-pencil-1.png'
+import closeIcon from '../assets/008-close-2.png'
 import styled from 'styled-components';
 
 const Field = styled.div`
@@ -16,7 +16,8 @@ const Field = styled.div`
     input {
         height: 23px;
         display: inline-block;
-        width: 30px;
+        width: 40px;
+        font-size: 1em
     }
     p {
         height: 20px;
@@ -39,19 +40,19 @@ export class EditableField extends React.Component {
             input: ''
         }
     }
-    handleInput = (e) => {
+    handleInput = e => {
         const input = e.target.value;
         this.setState({
             input
         });
     }
-    renderView = (value) => (
+    renderView = value => (
         <div>
             <p>{value}</p>
             <img src={editIcon} alt="Edit icon" onClick={this.toggleEditable} />   
         </div>
     )
-    renderEdits = (value) => (
+    renderEdits = value => (
         <div>
             <input type="text" value={this.state.input || value} onChange={this.handleInput} />  
             <img src={closeIcon} alt="Close icon" onClick={value => this.onClose(value)} />
@@ -59,7 +60,7 @@ export class EditableField extends React.Component {
     )
     onClose = () => {
         this.toggleEditable();
-        this.props.onUpdate(this.state.input);
+        this.props.onUpdate(parseInt(this.state.input, 10));
     }   
     toggleEditable = () => {
         this.setState({
