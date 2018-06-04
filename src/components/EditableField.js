@@ -1,6 +1,6 @@
 import React from 'react';
-import editIcon from '../assets/002-pencil-1.png'
-import closeIcon from '../assets/008-close-2.png'
+import editIcon from '../assets/004-edit-3.png'
+import closeIcon from '../assets/012-close.png'
 import styled from 'styled-components';
 
 const Field = styled.div`
@@ -11,13 +11,14 @@ const Field = styled.div`
         height: 20px;
         display: inline-block;
         position: absolute;
-        left: 40px;
+        left: 50px;
     }
     input {
-        height: 23px;
+        height: 20px;
         display: inline-block;
         width: 40px;
-        font-size: 1em
+        font-size: 1em;
+        
     }
     p {
         height: 20px;
@@ -55,7 +56,7 @@ export class EditableField extends React.Component {
     renderEdits = value => (
         <div>
             <input type="text" value={this.state.input || value} onChange={this.handleInput} />  
-            <img src={closeIcon} alt="Close icon" onClick={value => this.onClose(value)} />
+            <img src={closeIcon} alt="Close icon" onClick={this.onClose} />
         </div>
     )
     onClose = () => {
