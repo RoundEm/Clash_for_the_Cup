@@ -4,7 +4,45 @@
   font-family: sans-serif;
   box-sizing: border-box;
 }
-.form-container {
+body {
+  padding: 5px;
+}
+#content {
+  min-height: calc(100vh - 20px);
+  /* padding: 5px; */
+}
+td.point-cell {
+  width: 83px;
+  line-height: 25px;
+}
+.player-list {
+  width: 300px;
+  margin: 7px;
+  padding: 5px;
+  background-color: #E6E6FA;
+  border-radius: 3px;
+}
+.edit-player:hover, img:hover {
+  /* background-color: #bbbbf7; */
+  cursor: pointer;
+}
+.activePlayer {
+  background-color: greenyellow;
+}
+li {
+  list-style-type: none;
+}
+table, th, td, tr {
+  border: 1px solid #E6E6FA;
+  border-collapse: collapse;
+  padding: 2px 4px;
+}
+footer {
+  height: 20px;
+  margin: 0 0 10px;
+  text-align: center;
+}
+/* .form-container {
   width: 650px;
   border: 1px solid;
   border-radius: 5px;
@@ -37,6 +75,9 @@ input {
   border: 1px solid grey;
   border-radius: 5px;
 }
+input[type="date"] {
+  width: 220px;
+}
 button {
   padding: 7px;
   border-radius: 5px;
@@ -49,4 +90,4 @@ button {
 button:hover {
   background-color: #E6E6FA;
   cursor: pointer;
-}
+} */

@@ -34,15 +34,18 @@ class Players extends React.Component {
         console.log('delete player', id)
         const playerIndex = this.state.playersAddedToRound.indexOf(id);
         this.setState({
-            // playersAddedToRound: [...this.state.playersAddedToRound.slice(playerIndex, playerIndex + 1)]
             playersAddedToRound: [...this.state.playersAddedToRound.filter((player, i) => i !== playerIndex)]
         });
     }
-    renderPlayers = () => this.state.playersInLeague.map((player, index) => (
+    renderPlayers = () => this.state.playersInLeague.map((player, i) => (
         <li 
-            key={index}
+            key={i}
             onClick={() => this.handleClick(player)}
-            className="player-list edit-player" 
+            className={this.state.playersAddedToRound.includes(player.id) 
+                ? "player-list edit-player activePlayer" 
+                : "player-list edit-player"
+            }
+            
         >
             {player.name}
         </li>
