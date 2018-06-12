@@ -10,7 +10,7 @@ class AddInput extends React.Component {
     }
     handleInput = e => {
         this.setState({
-            input: e.target.value.trim()
+            input: e.target.value
         }); 
     }
     handleAddData = () => {
@@ -20,7 +20,7 @@ class AddInput extends React.Component {
             alert('This entry has already been added');
         } else {
             const newData = {
-                name: this.state.input,
+                name: this.state.input.trim(),
                 key: Date.now()
             }
             this.setState({
@@ -62,7 +62,6 @@ class AddInput extends React.Component {
                     autoComplete="off"
                     ref={i => this.input = i}
                 />
-                {/* // TODO: How to create a conditional so that this button shows Add Player or Add Point Type */}
                 <button 
                     onClick={this.handleAddData}
                     className="add-button"
