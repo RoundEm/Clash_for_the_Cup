@@ -9,8 +9,12 @@ class PointSettings extends React.Component {
             pointsSet: false
         }
     }
-    handleClick = () => {
-        console.log('handleClick ran')
+    handleClick = childDataAdded => {
+        if (childDataAdded.length === 0) {
+            alert('Please add at least one point type to continue')
+        } else {
+            // TODO: AJAX request to league pointTypes
+        }
     }
     render() {
         return (

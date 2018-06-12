@@ -73,7 +73,11 @@ class AddInput extends React.Component {
                 <ul>
                     {_data}
                 </ul>
-                <button onClick={this.props.handleClick}>Set {this.props.section}s</button>
+                <button 
+                    onClick={() => this.props.handleClick(this.state.dataAdded)}
+                >
+                    Set {this.props.section}s
+                </button>
             </div>
         );
     }

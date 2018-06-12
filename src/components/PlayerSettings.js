@@ -8,11 +8,21 @@ class PlayerSettings extends React.Component {
             section: 'Player'
         }
     }
+    handleClick = childDataAdded => {
+        if (childDataAdded.length === 0) {
+            alert('Please add at least one point type to continue')
+        } else {
+            // TODO: AJAX request to player endpoint
+        }
+    }
     render() {
         return (
             <div className="section-container">
                 <h3>Players</h3>        
-                <AddInput section={this.state.section} />
+                <AddInput 
+                    handleClick={this.handleClick} 
+                    section={this.state.section} 
+                />
             </div>
         );
     }
