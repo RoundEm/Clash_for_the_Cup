@@ -9,12 +9,11 @@ const playersInLeague = [
 ]
 
 class Players extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             playersInLeague,
             playersAddedToRound: [],
-
         }
     }
     handleClick = player => {
@@ -24,17 +23,16 @@ class Players extends React.Component {
             : this.addPlayerToRound(id)
     }
     addPlayerToRound = id => {
-        const playerIndex = this.state.playersAddedToRound.indexOf(id);
-        console.log('add player', id)
+        // console.log('add player', id)
         this.setState({
             playersAddedToRound: [...this.state.playersAddedToRound, id]
         });
     }
     removePlayerFromRound = id => {
-        console.log('delete player', id)
+        // console.log('delete player', id)
         const playerIndex = this.state.playersAddedToRound.indexOf(id);
         this.setState({
-            playersAddedToRound: [...this.state.playersAddedToRound.filter((player, i) => i !== playerIndex)]
+            playersAddedToRound: [...this.state.playersAddedToRound.filter((_, i) => i !== playerIndex)]
         });
     }
     renderPlayers = () => this.state.playersInLeague.map((player, i) => (
@@ -42,10 +40,9 @@ class Players extends React.Component {
             key={i}
             onClick={() => this.handleClick(player)}
             className={this.state.playersAddedToRound.includes(player.id) 
-                ? "player-list edit-player activePlayer" 
-                : "player-list edit-player"
+                ? "player-list activePlayer" 
+                : "player-list"
             }
-            
         >
             {player.name}
         </li>
