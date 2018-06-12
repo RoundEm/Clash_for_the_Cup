@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './AuthForms.css';
-import '../index.css';
 
 class Login extends React.Component {
     render() {

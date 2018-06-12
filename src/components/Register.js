@@ -1,6 +1,4 @@
 import React from 'react';
-import './AuthForms.css';
-import '../index.css';
 
 class Register extends React.Component {
     render() {

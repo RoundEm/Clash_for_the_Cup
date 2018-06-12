@@ -10,8 +10,7 @@ const App = () => {
         <BrowserRouter>
             <div>
                 <div id="content">
-                    <h1>Clash for the Cup</h1>
-                    <Navigation />
+                    <Navigation />  
                     <Router />
                 </div>
                 <Footer />
