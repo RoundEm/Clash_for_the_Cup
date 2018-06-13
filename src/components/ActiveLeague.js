@@ -1,5 +1,5 @@
 import React from 'react';
-import Players from './Players';
+import PlayersRender from './PlayersRender';
 import CompletedRounds from './CompletedRounds';
 import PointsSettingsTable from './PointsSettingsTable';
 import Standings from './Standings';
@@ -13,34 +13,46 @@ class ActiveLeague extends React.Component {
             super(props);
             this.state = {
                 leagueId: window.location.pathname.split('/')[3],
-                players: []
+                leagueName: '',
+                players: [],
+                rounds: []
             }
     }
     componentDidMount() {
         // GET league players
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
+                console.log('res.data: ', res.data)
                 const players = res.data.players;
-                console.log('players: ', players);
+                const leagueName = res.data.name;
+                const rounds = res.data.rounds;
                 this.setState({
-                    players
+                    players,
+                    leagueName,
+                    rounds
                 });
             })
             .catch(err => {
                 console.log(err);
             });
     }
+    componentDidUpdate() {
+        console.log()
+    }
     render() {
         return (
             <div className="active-league">
-                <h2>{'League Name'}</h2>
+                <h2>{this.state.leagueName}</h2>
+                <h3>Active Rounds:</h3>
                 <button><Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}>Create New Round</Link></button>
                 <h3>Players:</h3>
-                <Players 
+                <PlayersRender 
                     players={this.state.players}
                 />
                 <h3>Completed Rounds:</h3>
-                <CompletedRounds />
+                <CompletedRounds 
+                    rounds={this.state.rounds}
+                />
                 <h3>Standings:</h3>
                 <Standings />
                 <h3>Points Settings:</h3>

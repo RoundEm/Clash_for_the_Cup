@@ -1,45 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const leagueRounds = [
-  {
-      roundId: 1,
-      golfCourse: 'Augusta',
-      eventName: 'The Masters',
-      date: '06/10/2018',
-      players: [
-          {id: 1},
-          {id: 2},
-          {id: 3},
-          {id: 4}
-      ]
-  },
-  {
-      roundId: 2,
-      golfCourse: 'Sahalee',
-      eventName: 'PGA Championship',
-      date: '06/25/2018',
-      players: [
-          {id: 1},
-          {id: 2},
-          {id: 3},
-          {id: 5}
-      ]
-  },
-  {
-    roundId: 3,
-    golfCourse: 'TPC Sawgrass',
-    eventName: 'Players Championship',
-    date: '7/10/2018',
-    players: [
-        {id: 1},
-        {id: 2},
-        {id: 3},
-        {id: 4}
-    ]
-  }
-]
-
 const RoundCard = styled.div`
   border: 1px solid black;
   display: inline-block;
@@ -47,30 +8,22 @@ const RoundCard = styled.div`
   padding: 5px;
   border-radius: 3px;
 `
-class CompletedRounds extends React.Component {
-  constructor(props) {
-    super(props);
-      this.state = {
-          leagueRounds
-      }
-  }
-  renderRoundData = () => this.state.leagueRounds.map((round, i) => (
-    <RoundCard key={i}>
-      <p>{round.eventName}</p>  
-      <p>{round.golfCourse}</p>
+const CompletedRounds = (props) => {
+  console.log('CompletedRounds props: ', props)
+  const completedRounds = props.rounds.map((round, i) => (
+    <RoundCard key={round + i}>
+      <p>{round.course}</p>
       <p>{round.date}</p>
       {round.players.map((player, i) => (
-          <p key={i}>{player.id}</p>
+        <p key={player + i}>{player}</p>
       ))}
     </RoundCard>
   ));
-  render() {
-    return (
-      <div>
-        {this.renderRoundData()}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {completedRounds}
+    </div>
+  );
 }
 
 export default CompletedRounds;
