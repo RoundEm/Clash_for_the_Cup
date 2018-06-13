@@ -40,6 +40,7 @@ class ActiveLeague extends React.Component {
         console.log()
     }
     render() {
+        
         return (
             <div className="active-league">
                 <h2>{this.state.leagueName}</h2>
@@ -52,6 +53,7 @@ class ActiveLeague extends React.Component {
                 <h3>Completed Rounds:</h3>
                 <CompletedRounds 
                     rounds={this.state.rounds}
+                    league={this.state.leagueId}
                 />
                 <h3>Standings:</h3>
                 <Standings />
