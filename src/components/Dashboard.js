@@ -45,6 +45,8 @@ class Dashboard extends React.Component {
   render() {
     return (
         <div>
+            <h2><Link to="/dashboard/create-league">Create New League</Link></h2>
+            <h2>Active Leagues:</h2>
             {this.renderLeagues()}
         </div>
     );
