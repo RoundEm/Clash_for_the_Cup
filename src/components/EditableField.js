@@ -26,16 +26,9 @@ const Field = styled.div`
         height: 25px;
         display: inline-block;
     }
-    div {
-        /* width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center; */
-    }
 `
 
-export class EditableField extends React.Component {
+class EditableField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

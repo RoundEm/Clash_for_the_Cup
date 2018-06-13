@@ -11,9 +11,10 @@ class Dashboard extends React.Component {
     }
   }
   componentDidMount() {
+    // GET leagues
     axios.get(`${API_BASE_URL}/leagues`)
       .then(res => {
-        // console.log('league res: ', res.data);
+        console.log('league res: ', res.data);
         const leagues = res.data
         // TODO: Why was this not working correctly when I had setState setup like this?:
         // this.setState({
@@ -45,9 +46,10 @@ class Dashboard extends React.Component {
   render() {
     return (
         <div>
-            <h2><Link to="/dashboard/create-league">Create New League</Link></h2>
-            <h2>Active Leagues:</h2>
-            {this.renderLeagues()}
+          {/* TODO: make this a button? */}
+          <h2><Link to="/dashboard/create-league">Create New League</Link></h2>
+          <h2>Active Leagues:</h2>
+          {this.renderLeagues()}
         </div>
     );
   }

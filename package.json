@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "lodash": "^4.17.10",
     "mongoose": "^5.1.3",

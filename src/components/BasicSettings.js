@@ -15,7 +15,7 @@ class BasicSettings extends React.Component {
             [e.target.name]: e.target.value
         })
     }
-    handleSetData = () => {
+    handlePostData = () => {
         const data = {
             name: this.state.leagueName,
             endDate: this.state.leagueEndDate
@@ -23,7 +23,7 @@ class BasicSettings extends React.Component {
         if (this.state.leagueEndDate === '' || this.state.leagueName === '') {
             alert("Please complete both fields above before continuing")
         } else {
-            
+
             // POST basic league data
             axios.post(`${API_BASE_URL}/league`, data)
                 .then(data => {
@@ -33,10 +33,6 @@ class BasicSettings extends React.Component {
                     console.log(err);
                 });
         }
-    }
-    componentDidUpdate() {
-        console.log('name: ', this.state.leagueName)
-        console.log('end date: ', this.state.leagueEndDate)
     }
     render() {
         return (
@@ -58,7 +54,7 @@ class BasicSettings extends React.Component {
                     name="leagueEndDate"
                     onChange={e => this.handleInput(e)}
                 />    
-                <button onClick={this.handleSetData}>
+                <button onClick={this.handlePostData}>
                     Set Basic Info
                 </button>
             </div>
