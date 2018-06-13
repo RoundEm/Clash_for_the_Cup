@@ -1,24 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+const axios = require('axios');
+const { API_BASE_URL } = require('../config');
 
-// TODO: AJAX request for different leagues and map over to render cards with player names and league name
 class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      leagues: []
+    }
+  }
+  componentDidMount() {
+    axios.get(`${API_BASE_URL}/leagues`)
+      .then(res => {
+        // console.log('league res: ', res.data);
+        const leagues = res.data
+        // TODO: Why was this not working correctly when I had setState setup like this?:
+        // this.setState({
+        //   leagues: [...this.state.leagues, leagues]
+        // });
+        this.setState({
+          leagues
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  renderLeagues = () => this.state.leagues.map((league, i) => (
+    <Link to={`/dashboard/leagues/${league.id}`}>
+      <div 
+        key={league + i}
+        style={{border: '1px solid black', float: 'left', padding: 10, color: 'black'}}
+      >
+        <p>{league.name}</p>
+        <p>{league.endDate}</p>
+      </div>
+    </Link>
+  ));
+
+  componentDidUpdate() {
+    console.log('this.state.leagues: ', this.state.leagues)
+  }
   render() {
     return (
         <div>
-            <h2><Link to="/dashboard/create-league">Create New League</Link></h2>
-            <h2>Active Leagues:</h2>
-            {/* TODO: remove this temp styling and dummy data */}
-            <Link to="/dashboard/active-leagues/:id"><div style={{border: '1px solid black', float: 'left', padding: 10}}>
-              <p>League #1</p>
-              <p>Players</p>
-              <ul>
-                <li>Eric</li> 
-                <li>Luke</li>
-                <li>Johnny</li>
-                <li>Jason</li>
-              </ul>
-            </div></Link>
+            {this.renderLeagues()}
         </div>
     );
   }
