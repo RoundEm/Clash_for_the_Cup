@@ -1,23 +1,32 @@
 import React from 'react';
-
-const playersInLeague = [
-    { id: 1, name: 'Bob Ducca' },
-    { id: 2, name: 'Melissa Wompler' },
-    { id: 3, name: 'August Lindt' },
-    { id: 4, name: 'Dom DiMello' },
-    { id: 5, name: 'Dalton Wilcox' }
-]
+const axios = require('axios');
+const { API_BASE_URL } = require('../config');
 
 class Players extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            playersInLeague,
+            leagueId: window.location.pathname.split('/')[3],
+            playersInLeague: this.props.players || [],
             playersAddedToRound: [],
         }
     }
+    componentDidMount() {
+        // GET league players
+        axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
+            .then(res => {
+                const playersInLeague = res.data.players;
+                console.log('players: ', playersInLeague);
+                this.setState({
+                    playersInLeague
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     handleClick = player => {
-        const id = player.id;
+        const id = player._id;
         this.state.playersAddedToRound.includes(id) 
             ? this.removePlayerFromRound(id)
             : this.addPlayerToRound(id)
@@ -36,10 +45,11 @@ class Players extends React.Component {
         });
     }
     renderPlayers = () => this.state.playersInLeague.map((player, i) => (
+        console.log('renderPlayers: ', player),
         <li 
-            key={i}
+            key={player.name + i}
             onClick={() => this.handleClick(player)}
-            className={this.state.playersAddedToRound.includes(player.id) 
+            className={this.state.playersAddedToRound.includes(player._id) 
                 ? "player-list activePlayer" 
                 : "player-list"
             }
