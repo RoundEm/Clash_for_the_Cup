@@ -54,31 +54,9 @@ button:hover {
   background-color: rgb(163, 248, 230);
   cursor: pointer;
 } 
-/* button.add-player {
-  margin: 0 0 0 7px;
-} */
-/* .form-container {
-  width: 650px;
-  background-color: #E6E6FA;
-  border: 1px solid;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 0 auto;
-  overflow: hidden;
+.active-league h3 {
+  margin: 20px 0 0 0;
 }
-fieldset label {
-  margin: 0 0 2px;
-  font-size: .95em;
-  text-align: left;
-  display: block;
-}
-fieldset{
-  border: none;
-}
-td.point-cell {
-  width: 83px;
-  line-height: 25px;
-} */
 .data-added-list {
   width: 300px;
   margin: 7px;

@@ -32,7 +32,7 @@ class ActiveLeague extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="active-league">
                 <h2>{'League Name'}</h2>
                 <button><Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}>Create New Round</Link></button>
                 <h3>Players:</h3>
