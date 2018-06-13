@@ -1,4 +1,6 @@
 import React from 'react';
+const axios = require('axios');
+const { API_BASE_URL } = require('../config');
 
 class BasicSettings extends React.Component {
     constructor(props) {
@@ -14,12 +16,27 @@ class BasicSettings extends React.Component {
         })
     }
     handleSetData = () => {
-        // TODO: AJAX call
+        const data = {
+            name: this.state.leagueName,
+            endDate: this.state.leagueEndDate
+        }
+        if (this.state.leagueEndDate === '' || this.state.leagueName === '') {
+            alert("Please complete both fields above before continuing")
+        } else {
+            
+            // POST basic league data
+            axios.post(`${API_BASE_URL}/league`, data)
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        }
     }
     componentDidUpdate() {
         console.log('name: ', this.state.leagueName)
         console.log('end date: ', this.state.leagueEndDate)
-
     }
     render() {
         return (
