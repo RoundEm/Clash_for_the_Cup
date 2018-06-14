@@ -4,17 +4,23 @@ import { Link } from 'react-router-dom';
 
 const RoundCard = styled.div`
   border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
   display: inline-block;
-  margin: 3px;
-  padding: 5px;
-  border-radius: 3px;
+  padding: 10px;
+  margin: 10px;
+  vertical-align: top;
 `
 const CompletedRounds = (props) => {
-  // console.log('CompletedRounds props: ', props)
+  console.log('CompletedRounds props: ', props)
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (
     <Link to={`/dashboard/leagues/${leagueId}/round/${round._id}`}>
-      <RoundCard key={round + i}>
+      <RoundCard 
+        key={round + i}
+        className="info-card"
+      >
+        <p>{round.name}</p>
         <p>{round.course}</p>
         <p>{round.date}</p>
         {round.players.map((player, i) => (

@@ -1,7 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
+
+const LeagueCard = styled.div`
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+`
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -30,13 +40,17 @@ class Dashboard extends React.Component {
   }
   renderLeagues = () => this.state.leagues.map((league, i) => (
     <Link to={`/dashboard/leagues/${league.id}`}>
-      <div 
-        key={league + i}
-        style={{border: '1px solid black', float: 'left', padding: 10, color: 'black'}}
+      <LeagueCard
+      key={league + i}
+      className="info-card"
       >
         <p>{league.name}</p>
         <p>{league.endDate}</p>
-      </div>
+        {/* TODO: make sure this is working once players are being assinged to leagues correctly */}
+        {/* {league.players.map((player, i) => (
+          <p key={player + i}>{player.name}</p>
+        ))} */}
+      </LeagueCard>
     </Link>
   ));
 
@@ -46,10 +60,10 @@ class Dashboard extends React.Component {
   render() {
     return (
         <div>
-          {/* TODO: make this a button? */}
-          <h2><Link to="/dashboard/create-league">Create New League</Link></h2>
           <h2>Active Leagues:</h2>
           {this.renderLeagues()}
+          <button><Link to="/dashboard/create-league">Create New League</Link></button>
+          
         </div>
     );
   }
