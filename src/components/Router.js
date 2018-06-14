@@ -4,18 +4,19 @@ import {
     Switch,
     Redirect,
 } from 'react-router-dom';
-import Home from './Home';
-import Register from './Register';
-import Login from './Login';
+import ActiveLeague from './ActiveLeague';
 import CreateLeague from './CreateLeague';
 import CreateRound from './CreateRound';
 import CompletedRounds from './CompletedRounds';
-import Standings from './Standings';
 import Dashboard from './Dashboard';
+// import EditRoundPoints from './EditRoundPoints';
+import Home from './Home';
+import Login from './Login';
 import PointsTable from './PointsSettingsTable';
-import ActiveLeague from './ActiveLeague';
+import Register from './Register';
+import Standings from './Standings';
+import ViewCompletedRound from './ViewCompletedRound';
 import styled from 'styled-components';
-
 
 const HtmlBody = styled.div`
     padding: 7px;
@@ -34,8 +35,9 @@ const Router = () => {
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/dashboard/create-league" component={CreateLeague} />
             </Switch>
-            <Route exact path="/dashboard/active-leagues/:id" component={ActiveLeague} />
-            <Route exact path="/dashboard/active-leagues/:id/create-round" component={CreateRound} />
+            <Route exact path="/dashboard/leagues/:id" component={ActiveLeague} />
+            <Route exact path="/dashboard/leagues/:id/create-round" component={CreateRound} />
+            <Route exact path="/dashboard/leagues/:id/round/:roundId" component={ViewCompletedRound} />
         </HtmlBody>
     );
 }
