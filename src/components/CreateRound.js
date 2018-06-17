@@ -1,5 +1,4 @@
 import React from 'react';
-// import PlayersRound from './PlayersRound';
 import styled from 'styled-components';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
@@ -89,9 +88,9 @@ class CreateRound extends React.Component {
         <li 
             key={player.name + i}
             onClick={() => this.handlePlayerClick(player)}
-            className={this.state.playersAddedToRound.includes(player._id) 
-                ? "player-list activePlayer" 
-                : "player-list"
+            className={this.state.playersAddedToRound.includes(player.name) 
+                ? "activePlayer" 
+                : ""
             }
         >
             {player.name}
@@ -123,16 +122,20 @@ class CreateRound extends React.Component {
         });
     }
     handlePostData = () => {
-        // TODO: Best way to check if any fields in state are incomplete???
-        
         const data = {
+            league: this.state.leagueId,
             date: this.state.roundDate,
             course: this.state.roundCourse,
             name: this.state.roundName,
-            league: this.state.leagueId,
             players: this.state.playersAddedToRound
         }
-        // POST new round
+        for (const objValue in data) {
+            if (data[objValue] == '' || data[objValue].length === 0) {
+                // TODO: make this a modal or just text on the page
+                alert('Please complete all fields and add at least 1 player');
+                return;
+            } 
+        }
         axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/round`, data)
             .then(res => {
                 console.log('posted round:', res)
@@ -179,11 +182,7 @@ class CreateRound extends React.Component {
                             </ul>
                         </div>
                     </div>
-                    <button 
-                            onClick={this.handlePostData}
-                        >
-                            Create Round
-                        </button>
+                    <button onClick={this.handlePostData}>Create Round</button>
                 </div>
             </Style>
 
