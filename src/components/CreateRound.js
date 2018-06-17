@@ -98,21 +98,21 @@ class CreateRound extends React.Component {
         </li>
     ));
     handlePlayerClick = player => {
-        const id = player._id;
-        console.log('id', id)
-        this.state.playersAddedToRound.includes(id) 
-            ? this.removePlayerFromRound(id)
-            : this.addPlayerToRound(id)
+        const name = player.name;
+        
+        this.state.playersAddedToRound.includes(name) 
+            ? this.removePlayerFromRound(name)
+            : this.addPlayerToRound(name)
     }
     handleInput = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
-    addPlayerToRound = id => {
+    addPlayerToRound = playerName => {
         // console.log('add player', id)
         this.setState({
-            playersAddedToRound: [...this.state.playersAddedToRound, id]
+            playersAddedToRound: [...this.state.playersAddedToRound, playerName]
         });
     }
     removePlayerFromRound = id => {
@@ -122,23 +122,26 @@ class CreateRound extends React.Component {
             playersAddedToRound: [...this.state.playersAddedToRound.filter((_, i) => i !== playerIndex)]
         });
     }
-    // handlePostData = () => {
-    //     // TODO: Best way to check if any fields in state are incomplete???
-    //     const data = {
-    //         date: this.state.roundDate,
-    //         course: this.state.roundCourse,
-    //         name: this.state.roundName,
-    //         league: this.state.leagueId
-    //     }
-    //     // POST new round
-    //     axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/round`, data)
-    //         .then(res => {
-    //             console.log('posted round:', res)
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         });
-    // }
+    handlePostData = () => {
+        // TODO: Best way to check if any fields in state are incomplete???
+        
+        const data = {
+            date: this.state.roundDate,
+            course: this.state.roundCourse,
+            name: this.state.roundName,
+            league: this.state.leagueId,
+            players: this.state.playersAddedToRound
+        }
+        // POST new round
+        axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/round`, data)
+            .then(res => {
+                console.log('posted round:', res)
+                window.history.back()
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     componentDidUpdate() {
         console.log('this.state.playersAddedToRound: ', this.state.playersAddedToRound)
     }
