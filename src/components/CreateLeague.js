@@ -3,6 +3,8 @@ import BasicSettings from './BasicSettings';
 import PointSettings from './PointSettings';
 import PlayerSettings from './PlayerSettings';
 import styled from 'styled-components';
+const axios = require('axios');
+const { API_BASE_URL } = require('../config');
 
 const Style = styled.div`
     width: 650px;
@@ -37,26 +39,44 @@ const Style = styled.div`
 class CreateLeague extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            leagueId: ''
+        }
     }
-    handleSave = () => {
-        // TODO: Check if any of the fields on child components are empty?
-        console.log('handleSave ran')
+    handleBasicSave = leagueId => {
+        this.setState({
+            leagueId
+        });
+        this.refs.childBasic.updateActiveComponent(1);
+    }
+    handlePlayerSave = () => {
+        this.refs.childPlayer.updateActiveComponent(1);
+    }
+    handleDone = () => {
+        window.history.back();
+    }
+    componentDidUpdate() {
+        console.log('CreateLeague activeComponent: ', this.state.activeComponent)
     }
     render() {
         return (
             <Style>
                 <div>
                     <h2>Create League</h2>
-                    <BasicSettings />
-                    <PlayerSettings />
-                    <PointSettings />
-                    <button 
-                        className="save-settings"
-                        onClick={this.handleSave}
-                    >
-                        Create League
-                    </button>
-                    
+                    <BasicSettings 
+                        onSave={this.handleBasicSave} 
+                        // active={this.state.activeComponent === 1}
+                    />
+                    <PlayerSettings 
+                        leagueId={this.state.leagueId} 
+                        onSave={this.handlePlayerSave}
+                        ref="childBasic"
+
+                    />
+                    <PointSettings 
+                        leagueId={this.state.leagueId} 
+                        ref="childPlayer"
+                    />
                 </div>
             </Style>
         );

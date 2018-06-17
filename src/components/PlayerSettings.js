@@ -9,8 +9,14 @@ class PlayerSettings extends React.Component {
         this.state = {
             input: '',
             leagueId: '',
-            playersAdded: []
+            playersAdded: [],
+            activeComponent: 0
         }
+    }
+    updateActiveComponent = num => {
+        this.setState({
+            activeComponent: num
+        });
     }
     handleInput = e => {
         this.setState({
@@ -39,9 +45,7 @@ class PlayerSettings extends React.Component {
             playersAdded: this.state.playersAdded.filter(data => data.key !== key)
         });
     }
-
-
-    handleClick = playersAdded => {
+    handleSavePlayers = playersAdded => {
         if (playersAdded.length === 0) {
             alert('Please add at least one type to continue')
             return;
@@ -52,8 +56,12 @@ class PlayerSettings extends React.Component {
         });
         const promises = this.state.playersAdded.map(player => this.addPlayerToLeague(player));
         Promise.all(promises)
-            .then(responses => {
-                console.log('POST players res: ', responses);
+            .then(res => {
+                console.log('POST players res: ', res);
+                this.setState({
+                    activeComponent: 0
+                });
+                this.props.onSave();
             })
             .catch(err => {
                 console.log(err);
@@ -82,7 +90,10 @@ class PlayerSettings extends React.Component {
             : <p>Select a player to remove them</p>;
 
         return (
-            <div className="section-container">
+            <div 
+                className="section-container" 
+                style={{backgroundColor: this.state.activeComponent === 0 ? '#e8ebef' : '', color: this.state.activeComponent === 0 ? 'grey' : ''}}
+            >
                 <h3>Players</h3>        
                 <input
                     type="text"
@@ -90,10 +101,12 @@ class PlayerSettings extends React.Component {
                     onChange={this.handleInput}
                     autoComplete="off"
                     ref={i => this.input = i}
+                    disabled={this.state.activeComponent === 0 ? true : false}
                 />
                 <button 
                     onClick={this.handleAddPlayer}
                     className="add-button"
+                    disabled={this.state.activeComponent === 0 ? true : false}
                 >
                     Add player
                 </button>
@@ -102,7 +115,8 @@ class PlayerSettings extends React.Component {
                     {players}
                 </ul>
                 <button 
-                    onClick={() => this.handleClick(this.state.playersAdded)}
+                    onClick={() => this.handleSavePlayers(this.state.playersAdded)}
+                    disabled={this.state.activeComponent === 0 ? true : false}
                 >
                     Set Players
                 </button>
