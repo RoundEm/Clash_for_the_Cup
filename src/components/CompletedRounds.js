@@ -15,9 +15,11 @@ const CompletedRounds = (props) => {
   console.log('CompletedRounds props: ', props)
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (
-    <Link to={`/dashboard/leagues/${leagueId}/round/${round._id}`}>
+    <Link 
+      to={`/dashboard/leagues/${leagueId}/round/${round._id}`}
+      key={round + i}
+    >
       <RoundCard 
-        key={round + i}
         className="info-card"
       >
         <p>{round.name}</p>
