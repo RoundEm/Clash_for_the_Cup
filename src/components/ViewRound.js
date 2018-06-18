@@ -1,7 +1,17 @@
 import React from 'react';
 import EditableField from './EditableField';
+import styled from 'styled-components';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
+
+const PlayerList = styled.div`
+    ul {
+        margin: 25px 0 0 5px;
+    }
+    li {
+        margin: 20px 0;
+    }
+`
 
 class ViewRound extends React.Component {
     constructor(props) {
@@ -44,7 +54,7 @@ class ViewRound extends React.Component {
                 console.log('point weight res data: ', res.data)
                 let pointNames = []; 
                 res.data.map(point => (
-                    pointNames.push(point.name)
+                    pointNames.push(point.type)
                 ));
                 this.setState({
                     pointDefinitions: pointNames
@@ -54,36 +64,64 @@ class ViewRound extends React.Component {
                 console.log(err);
             });
     }
+    componentDidUpdate() {
+        console.log('pointDefinitions: ', this.state.pointDefinitions)
+    }
     render() {
-        const playerNamesHeader = (
-            <div>{this.state.players.map((player, i) => (
-                    <th key={player + i}>{player}</th>
-            ))}</div>
-        )
-        const points = (
-            <div>{this.state.pointDefinitions.map((point, i) => (
-                <tr key={point + i}>
-                    <td>{point}</td>
-                </tr>
-            ))}</div>
-        )
+        // const pointRows = (
+        //     <td>{this.state.players.forEach(player => (
+        //         null
+        //     ))}</td>
+        // )
+        // const playerNamesHeader = (
+        //     <div>{this.state.players.map((player, i) => (
+        //             <th key={player + i}>{player}</th>
+        //     ))}</div>
+        // )
 
         return (
-            <div>
+            <PlayerList>
                 <h2>View Round</h2>
                 <p>Course: {this.state.course}</p>
                 <p>Event Name: {this.state.name}</p>
                 <p>Date: {this.state.date}</p>
-                <table>
+                <ul>
+                    {this.state.players.map((player, i) => (
+                        <div>
+                            <li>{player}</li>
+                            {this.state.pointDefinitions.map((point, i) => (
+                                <div>
+                                    <label htmlFor={point}>{point}</label>
+                                    <input 
+                                        type="number" 
+                                        name={point}
+                                    />
+                                </div>
+                            ))}
+                            
+                        </div>
+                    ))}
+                </ul>
+                {/* <table>
                     <tbody>
                         <tr>
                             <th>Point Types</th>
-                            {playerNamesHeader}
+                            {this.state.players.map((player, i) => (
+                                    <th key={player + i}>{player}</th>
+                            ))}
                         </tr>
-                            {points}
+                        {this.state.pointDefinitions.map((point, i) => (
+                            <tr key={point + i}>
+                                <td>{point}</td>
+                                <td>{this.state.players.forEach(player => (
+                                    null
+                                ))}</td>
+                            </tr>
+                            
+                        ))}
                     </tbody>
-                </table>
-            </div>
+                </table> */}
+            </PlayerList>
         );
     }
 }
