@@ -1,21 +1,20 @@
 import React from 'react';
 import PlayersRender from './PlayersRender';
 import CompletedRounds from './CompletedRounds';
-import PointsSettingsTable from './PointsSettingsTable';
 import Standings from './Standings';
 import { Link } from 'react-router-dom';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 
-// TODO: AJAX request to get data for: league name, points table; completed rounds; players; standings
 class ActiveLeague extends React.Component {
     constructor(props) {
             super(props);
             this.state = {
                 leagueId: window.location.pathname.split('/')[3],
                 leagueName: '',
-                players: [],
-                rounds: []
+                players: [],    
+                rounds: [],
+                points: []
             }
     }
     componentDidMount() {
@@ -26,31 +25,29 @@ class ActiveLeague extends React.Component {
                 const players = res.data.players;
                 const leagueName = res.data.name;
                 const rounds = res.data.rounds;
+                const points = res.data.points;
                 this.setState({
                     players,
                     leagueName,
-                    rounds
+                    rounds,
+                    points
                 });
             })
             .catch(err => {
                 console.log(err);
             });
     }
-    componentDidUpdate() {
-        console.log()
-    }
     render() {
         
         return (
             <div className="active-league">
                 <h2>{this.state.leagueName}</h2>
-                <h3>Active Rounds:</h3>
-                <button><Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}>Create New Round</Link></button>
                 <h3>Players:</h3>
                 <PlayersRender 
                     players={this.state.players}
                 />
-                <h3>Completed Rounds:</h3>
+                <Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}><button>Create New Round</button></Link>
+                <h3>Rounds:</h3>
                 <CompletedRounds 
                     rounds={this.state.rounds}
                     league={this.state.leagueId}
@@ -58,6 +55,16 @@ class ActiveLeague extends React.Component {
                 <h3>Standings:</h3>
                 <Standings />
                 <h3>Points Settings:</h3>
+                <table>
+                    <tbody>
+                        {this.state.points.map((point, i) => (
+                            <tr>
+                                <td>{point.type}</td>
+                                <td>{point.weight}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
                 
             </div>
             
