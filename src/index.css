@@ -11,7 +11,7 @@ body {
   min-height: calc(100vh - 20px);
 }
 h2 {
-  margin: 0 0 5px;
+  margin: 10px 0 5px;
 }
 h3 {
   margin: 0 0 10px;
@@ -21,6 +21,12 @@ p {
 }
 li {
   list-style-type: none;
+  margin: 5px;
+}
+a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 table, th, td, tr {
   border: 1px solid #E6E6FA;
@@ -57,18 +63,23 @@ button:hover {
 .active-league h3 {
   margin: 20px 0 0 0;
 }
-.data-added-list {
-  width: 300px;
-  margin: 7px;
-  padding: 5px;
-  background-color: #E6E6FA;
-  border-radius: 3px;
+.players-in-round li:hover {
+  color: #ea4866;
 }
-
-.data-added-list:hover, img:hover {
+li.player-added-list {
+  background-color: #E6E6FA;
+  padding: 5px;
+  border-radius: 3px; 
+}
+li.player-added-list:hover {
   cursor: pointer;
+  background-color: rgb(163, 248, 230);
 }
 .activePlayer {
+  background-color: rgb(163, 248, 230);
+}
+.info-card:hover {
+  border-color: rgb(163, 248, 230);
   background-color: rgb(163, 248, 230);
 }
 footer {
@@ -76,3 +87,13 @@ footer {
   margin: 0 0 10px;
   text-align: center;
 }
+
+input:disabled,
+button:disabled {
+  background-color: #eee;
+  color: grey;
+  border: 1px solid #e8ebef;
+  cursor: not-allowed;
+}
+
+

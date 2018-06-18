@@ -11,7 +11,7 @@ const Field = styled.div`
         height: 25px;
         display: inline-block;
         position: absolute;
-        left: 50px;
+        left: 70px;
     }
     img:hover {
         cursor: pointer;

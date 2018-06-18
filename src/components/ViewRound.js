@@ -17,6 +17,7 @@ class ViewRound extends React.Component {
         }       
     }
     componentDidMount() {
+        
         //GET round details
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/round/${this.state.roundId}`)
             .then(res => {
@@ -53,9 +54,6 @@ class ViewRound extends React.Component {
                 console.log(err);
             });
     }
-    componentDidUpdate() {
-        console.log('this.state.pointDefinitions: ', this.state.pointDefinitions)
-    }
     render() {
         const playerNamesHeader = (
             <div>{this.state.players.map((player, i) => (
@@ -64,7 +62,7 @@ class ViewRound extends React.Component {
         )
         const points = (
             <div>{this.state.pointDefinitions.map((point, i) => (
-                <tr>
+                <tr key={point + i}>
                     <td>{point}</td>
                 </tr>
             ))}</div>
@@ -72,7 +70,7 @@ class ViewRound extends React.Component {
 
         return (
             <div>
-                <h2>View Round Details</h2>
+                <h2>View Round</h2>
                 <p>Course: {this.state.course}</p>
                 <p>Event Name: {this.state.name}</p>
                 <p>Date: {this.state.date}</p>
@@ -83,9 +81,6 @@ class ViewRound extends React.Component {
                             {playerNamesHeader}
                         </tr>
                             {points}
-                            <EditableField />
-                            <EditableField />
-                            <EditableField />
                     </tbody>
                 </table>
             </div>

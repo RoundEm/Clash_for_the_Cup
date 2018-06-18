@@ -11,6 +11,7 @@ const LeagueCard = styled.div`
   display: inline-block;
   padding: 10px;
   margin: 10px;
+  vertical-align: top;
 `
 
 class Dashboard extends React.Component {
@@ -24,12 +25,8 @@ class Dashboard extends React.Component {
     // GET leagues
     axios.get(`${API_BASE_URL}/leagues`)
       .then(res => {
-        console.log('league res: ', res.data);
         const leagues = res.data
-        // TODO: Why was this not working correctly when I had setState setup like this?:
-        // this.setState({
-        //   leagues: [...this.state.leagues, leagues]
-        // });
+        console.log('league res: ', res.data)
         this.setState({
           leagues
         });
@@ -39,16 +36,17 @@ class Dashboard extends React.Component {
       });
   }
   renderLeagues = () => this.state.leagues.map((league, i) => (
-    <Link to={`/dashboard/leagues/${league.id}`}>
-      <LeagueCard
+    <Link 
+      to={`/dashboard/leagues/${league.id}`}
       key={league + i}
-      className="info-card"
+    >
+      <LeagueCard
+        className="info-card"
       >
         <p>{league.name}</p>
-        <p>{league.endDate}</p>
-        {/* TODO: make sure this is working once players are being assinged to leagues correctly */}
+        {/* TODO: This causes error when active */}
         {/* {league.players.map((player, i) => (
-          <p key={player + i}>{player.name}</p>
+          <p key={player + i}>{player}</p>
         ))} */}
       </LeagueCard>
     </Link>
@@ -60,10 +58,9 @@ class Dashboard extends React.Component {
   render() {
     return (
         <div>
+          <Link to="/dashboard/create-league"><button>Create New League</button></Link>
           <h2>Active Leagues:</h2>
           {this.renderLeagues()}
-          <button><Link to="/dashboard/create-league">Create New League</Link></button>
-          
         </div>
     );
   }

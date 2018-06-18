@@ -11,7 +11,6 @@ class RenderPlayers extends React.Component {
         }
     }
     componentDidMount() {
-        console.log('this.state.leagueId: ',this.state.leagueId)
         // GET league players
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
