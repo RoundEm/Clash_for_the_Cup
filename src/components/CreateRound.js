@@ -75,7 +75,7 @@ class CreateRound extends React.Component {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
                 const playersInLeague = res.data.players;
-                // console.log('players: ', playersInLeague);
+                console.log('playersInLeague: ', playersInLeague);
                 this.setState({
                     playersInLeague
                 });
@@ -85,10 +85,11 @@ class CreateRound extends React.Component {
             });
     }
     renderPlayers = () => this.state.playersInLeague.map((player, i) => (
+        // console.log('player._id: ', player._id)
         <li 
-            key={player.name + i}
+            key={player._id + i}
             onClick={() => this.handlePlayerClick(player)}
-            className={this.state.playersAddedToRound.includes(player.name) 
+            className={this.state.playersAddedToRound.includes(player._id) 
                 ? "activePlayer" 
                 : ""
             }
@@ -98,10 +99,10 @@ class CreateRound extends React.Component {
     ));
     handlePlayerClick = player => {
         const name = player.name;
-        
-        this.state.playersAddedToRound.includes(name) 
-            ? this.removePlayerFromRound(name)
-            : this.addPlayerToRound(name)
+        const id = player._id;
+        this.state.playersAddedToRound.includes(id) 
+            ? this.removePlayerFromRound(id)
+            : this.addPlayerToRound(id)
     }
     handleInput = e => {
         this.setState({
@@ -146,7 +147,7 @@ class CreateRound extends React.Component {
             });
     }
     componentDidUpdate() {
-        console.log('this.state.playersAddedToRound: ', this.state.playersAddedToRound)
+        console.log('this.state: ', this.state)
     }
     render() {
         return (
