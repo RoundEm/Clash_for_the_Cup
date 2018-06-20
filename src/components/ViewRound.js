@@ -1,15 +1,30 @@
 import React from 'react';
-import EditableField from './EditableField';
 import styled from 'styled-components';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 
 const PlayerList = styled.div`
-    ul {
-        margin: 25px 0 0 5px;
+    div.player-list {
+        padding: 5px;
     }
-    li {
-        margin: 20px 0;
+    div.point-list, p {
+        padding: 0 3px 0 5px;
+    }
+    ul {
+        margin: 0 0 0 5px;
+    }
+    li, p.inline-p {
+        display: inline-block;
+    }
+    input {
+        width: 60px;
+        margin: 10px
+    }
+    button {
+        display: inline-block;
+    }
+    table {
+        margin: 5px 0 20px 5px;
     }
 `
 
@@ -23,21 +38,22 @@ class ViewRound extends React.Component {
             course: '',
             date: '',
             players: [], 
-            pointDefinitions: []
+            pointDefinitions: [],
+            pointsInput: '',
+            sucessMsg: ''
         }       
     }
     componentDidMount() {
-        
         //GET round details
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/round/${this.state.roundId}`)
             .then(res => {
-                // console.log('round: ', res.data);
+                // console.log('get round: ',res.data)
                 const data = res.data;
                 const name = data.name;
                 const course = data.course;
                 const players = data.players;
                 const date = data.date;
-                TODO: // How to get league name? The data being returned only has ID for league
+                // TODO: How to get league name? The data being returned only has ID for league
                 this.setState({
                     players,
                     course,
@@ -48,82 +64,134 @@ class ViewRound extends React.Component {
             .catch(err => {
                 console.log(err);
             });
+
         // GET league points & weighting
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/point-weighting`)
             .then(res => {
-                console.log('point weight res data: ', res.data)
-                let pointNames = []; 
-                res.data.map(point => (
-                    pointNames.push(point.type)
-                ));
+                // console.log('point weight res data: ', res.data)
                 this.setState({
-                    pointDefinitions: pointNames
+                    pointDefinitions: res.data
                 });
             })
             .catch(err => {
                 console.log(err);
             });
     }
-    componentDidUpdate() {
-        console.log('pointDefinitions: ', this.state.pointDefinitions)
-    }
-    render() {
-        // const pointRows = (
-        //     <td>{this.state.players.forEach(player => (
-        //         null
-        //     ))}</td>
-        // )
-        // const playerNamesHeader = (
-        //     <div>{this.state.players.map((player, i) => (
-        //             <th key={player + i}>{player}</th>
-        //     ))}</div>
-        // )
+    // onChange = input => {
+    //     this.setState({
+    //         pointsTotal: input
+    //     });
+    // }
+    handlePostData = playerId => {
+        const points = {
+            total: this.state.pointsInput
+        }
 
+        // POST player points for round
+        axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation/${playerId}`, points)
+            .then(res => {
+                console.log('post points res: ', res)
+                this.setState({
+                    pointsInput: ''
+                })
+                this.getPointTotals(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            });
+    }
+    getPointTotals = data => {
+        const playerId = data.player;
+        const leagueId = data.league;
+
+        // GET player points from all rounds
+        axios.get(`${API_BASE_URL}/leagues/${leagueId}/points-allocation/${playerId}`)
+            .then(res => {
+                console.log('GET points res: ', res)
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+    // renderSuccessMsg = () => {
+    //     this.setState({
+    //         sucessMsg: 'This entry has been saved'
+    //     })
+    // }
+    // componentDidUpdate() {
+    //     console.log('state pointsTotal: ', this.state.pointsTotal)
+    //     console.log('typeof pointsTotal', typeof this.state.pointsTotal)
+    // }
+    render() {
         return (
             <PlayerList>
-                <h2>View Round</h2>
+                <h2>View Round/Edit Points</h2>
                 <p>Course: {this.state.course}</p>
                 <p>Event Name: {this.state.name}</p>
                 <p>Date: {this.state.date}</p>
+                <h3>Points Settings:</h3>
+                <table>
+                    <tbody>
+                        {this.state.pointDefinitions.map((point, i) => (
+                            <tr key={point + i}>
+                                <td>{point.type}</td>
+                                <td>{point.weight}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                
+                <p className="inline-p">Enter and save the total points earned in this round for each player</p>
                 <ul>
                     {this.state.players.map((player, i) => (
-                        <div>
+                        <div className="player-list" key={player + i}>
                             <li>{player}</li>
-                            {this.state.pointDefinitions.map((point, i) => (
-                                <div>
-                                    <label htmlFor={point}>{point}</label>
-                                    <input 
-                                        type="number" 
-                                        name={point}
-                                    />
-                                </div>
-                            ))}
-                            
+                            <input 
+                                type="number" 
+                                // TODO: why didn't this with onChange method work?
+                                // onChange={e => this.onChange(e.target.value)}
+                                onChange={e => this.setState({
+                                    pointsInput: +e.target.value
+                                })}
+                            />
+                            <p className="inline-p">{this.state.sucessMsg === '' 
+                                    ? ''
+                                    : this.state.sucessMsg
+                            }</p>
+                            <button 
+                                onClick={() => this.handlePostData(player, this.state.pointsInput)}
+                            >
+                                Save
+                            </button>
                         </div>
                     ))}
                 </ul>
-                {/* <table>
-                    <tbody>
-                        <tr>
-                            <th>Point Types</th>
-                            {this.state.players.map((player, i) => (
-                                    <th key={player + i}>{player}</th>
-                            ))}
-                        </tr>
-                        {this.state.pointDefinitions.map((point, i) => (
-                            <tr key={point + i}>
-                                <td>{point}</td>
-                                <td>{this.state.players.forEach(player => (
-                                    null
-                                ))}</td>
-                            </tr>
-                            
-                        ))}
-                    </tbody>
-                </table> */}
+                <button onClick={() => window.history.back()}>Done</button>
             </PlayerList>
         );
     }
 }
 
 export default ViewRound;
+
+// onChange = (id, input) => {
+//     console.log('player Id: ', id)
+//     console.log('point input: ', input)
+    // const state = {
+        // playerPoints: {
+            // 1: {
+                // birdie: 10
+                //}
+        // }
+    // }
+    // const playerPoints = {
+    //     ...playerPoints,
+    //     [id]: {
+            
+    //         this.state.playerPoints[id]
+    //     }
+    // }
+    // this.setState({
+    //     playerPoints
+    // })
+// }
