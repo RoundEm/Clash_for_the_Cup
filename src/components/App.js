@@ -9,9 +9,13 @@ const App = () => {
     return (
         <BrowserRouter>
             <div>
-                <div id="content">
+                <div className="header-nav">
                     <Navigation />  
-                    <Router />
+                </div>
+                <div className="main-content">
+                    <div>
+                        <Router />
+                    </div>
                 </div>
                 <Footer />
             </div>
