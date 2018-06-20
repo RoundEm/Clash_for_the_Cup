@@ -43,22 +43,20 @@ class Dashboard extends React.Component {
       <LeagueCard
         className="info-card"
       >
-        <p>{league.name}</p>
-        {/* TODO: This causes error when active */}
-        {/* {league.players.map((player, i) => (
-          <p key={player + i}>{player}</p>
-        ))} */}
+        <p><b>{league.name}</b></p>
+        {league.players.map((player, i) => (
+          <p key={player + i}>{player.name}</p>
+        ))}
       </LeagueCard>
     </Link>
   ));
-
   componentDidUpdate() {
     console.log('this.state.leagues: ', this.state.leagues)
   }
   render() {
     return (
         <div>
-          <Link to="/dashboard/create-league"><button>Create New League</button></Link>
+          <Link to="/dashboard/create-league"><button style={{margin: '15px auto'}}>Create New League</button></Link>
           <h2>Active Leagues:</h2>
           {this.renderLeagues()}
         </div>
