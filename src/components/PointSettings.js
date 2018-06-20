@@ -61,7 +61,7 @@ class PointSettings extends React.Component {
         });
         const newDefinition = {
             type: this.state.input,
-            weight: 0
+            weight: ''
         }
         this.setState({
             pointsDefinitions: [...this.state.pointsDefinitions, newDefinition],
