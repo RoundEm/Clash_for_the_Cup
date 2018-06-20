@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
 
 const RoundCard = styled.div`
-  border: 1px solid black;
+  border: 2px solid #b8eac8;
   border-radius: 5px;
   text-align: center;
   display: inline-block;
@@ -11,8 +11,8 @@ const RoundCard = styled.div`
   margin: 10px;
   vertical-align: top;
 `
-const CompletedRounds = (props) => {
-  console.log('CompletedRounds props: ', props)
+const RoundSummary = (props) => {
+  // console.log('RoundSummary props: ', props)
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (
     <Link 
@@ -22,9 +22,9 @@ const CompletedRounds = (props) => {
       <RoundCard 
         className="info-card"
       >
-        <p>{round.name}</p>
-        <p>{round.course}</p>
-        <p>{round.date}</p>
+        <p><b>{round.name}</b></p>
+        <p><b>{round.course}</b></p>
+        <p><b>{round.date}</b></p>
         {round.players.map((player, i) => (
             <p key={player + i}>{player}</p>
         ))}
@@ -38,4 +38,4 @@ const CompletedRounds = (props) => {
   );
 }
 
-export default CompletedRounds;
+export default RoundSummary;
