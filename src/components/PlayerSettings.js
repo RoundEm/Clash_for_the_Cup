@@ -1,5 +1,4 @@
 import React from 'react';
-import AddPlayer from './AddPlayer';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 
@@ -79,7 +78,7 @@ class PlayerSettings extends React.Component {
             <li 
                 key={i}
                 onClick={() => this.removePlayer(data.key)}
-                className="player-added-list"
+                className="player-settings-list"
             >
                 {data.name}
             </li>

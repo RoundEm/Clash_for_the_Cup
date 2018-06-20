@@ -7,7 +7,7 @@ class RenderPlayers extends React.Component {
         super(props);
         this.state = {
             leagueId: window.location.pathname.split('/')[3],
-            players: this.props.players || [],
+            players: this.props.players || []
         }
     }
     componentDidMount() {
@@ -25,7 +25,6 @@ class RenderPlayers extends React.Component {
             });
     }
     renderPlayers = () => this.state.players.map((player, i) => (
-        console.log('renderPlayers: ', player),
         <li 
             key={player.name + i}
         >

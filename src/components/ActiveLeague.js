@@ -1,6 +1,6 @@
 import React from 'react';
 import PlayersRender from './PlayersRender';
-import CompletedRounds from './CompletedRounds';
+import RoundSummary from './RoundSummary';
 import Standings from './Standings';
 import { Link } from 'react-router-dom';
 const axios = require('axios');
@@ -21,7 +21,7 @@ class ActiveLeague extends React.Component {
         // GET league players
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
-                console.log('res.data: ', res.data)
+                // console.log('res.data: ', res.data)
                 const players = res.data.players;
                 const leagueName = res.data.name;
                 const rounds = res.data.rounds;
@@ -38,27 +38,27 @@ class ActiveLeague extends React.Component {
             });
     }
     render() {
-        
         return (
             <div className="active-league">
-                <h2>{this.state.leagueName}</h2>
+                <h2>League Name: {this.state.leagueName}</h2>
                 <h3>Players:</h3>
                 <PlayersRender 
                     players={this.state.players}
                 />
-                <Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}><button>Create New Round</button></Link>
                 <h3>Rounds:</h3>
-                <CompletedRounds 
+                <Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}><button>Create New Round</button></Link>
+                <RoundSummary 
                     rounds={this.state.rounds}
                     league={this.state.leagueId}
                 />
                 <h3>Standings:</h3>
                 <Standings />
                 <h3>Points Settings:</h3>
+                {/* TODO: Make this a component and also use it on ViewRound component */}
                 <table>
                     <tbody>
                         {this.state.points.map((point, i) => (
-                            <tr>
+                            <tr key={point + i}>
                                 <td>{point.type}</td>
                                 <td>{point.weight}</td>
                             </tr>

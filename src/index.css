@@ -1,20 +1,43 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   box-sizing: border-box;
+  color: white;
 }
-body {
-  padding: 5px;
+.main-content {
+  width: 100%;
+  min-height: calc(100vh - 25px);
+  background-color: #24b68e;
 }
-#content {
-  min-height: calc(100vh - 20px);
+.main-content div {
+  padding: 10px;
+}
+nav {
+  font-size: 1.5em;
+  position: relative;
+  padding: 18px;  
+  width: 100%;
+  background-color: #b8eac8;
+}
+nav img {
+  position: absolute;
+  right: 20px;
+  top: 6px;
+}
+h1 {
+  display: inline-block;
+  color: #24b68e;
+  font-family: 'Contrail One', cursive;
 }
 h2 {
-  margin: 10px 0 5px;
+  color: #efdb94;
+  font-family: 'Contrail One', cursive;
 }
 h3 {
-  margin: 0 0 10px;
+  color: #b8eac8;
+  margin: 20px 0 0 0;
+  font-family: 'Contrail One', cursive;
 }
 p {
   margin: 0 0 5px;
@@ -25,13 +48,15 @@ li {
 }
 a {
   text-decoration: none;
+  color: white;
   margin: 0;
   padding: 0;
 }
 table, th, td, tr {
-  border: 1px solid #E6E6FA;
+  border: 1px solid #D3D3D3;
   border-collapse: collapse;
   padding: 2px 4px;
+  margin: 5px 0 0;
 }
 input {
   width: 450px;
@@ -41,6 +66,7 @@ input {
   font-size: 1em;
   border: 1px solid grey;
   border-radius: 5px;
+  color: black;
 }
 input[type="date"] {
   width: 220px;
@@ -51,47 +77,57 @@ button {
   border-radius: 5px;
   font-size: .9em;
   display: block;
+  color: black;
 }
 button.add-button {
   margin: 0 0 0 8px;
   display: inline-block;
 }
 button:hover {
-  background-color: rgb(163, 248, 230);
+  background-color: #68e2a3;
   cursor: pointer;
+  color: black;
 } 
 .active-league h3 {
   margin: 20px 0 0 0;
 }
 .players-in-round li:hover {
-  color: #ea4866;
+  color: grey;
 }
-li.player-added-list {
-  background-color: #E6E6FA;
+.player-settings-list:hover {
+  color: #e27c68;
+  cursor: pointer;
+}
+li.player-added-list, .player-settings-list {
+  background-color: #D3D3D3;
   padding: 5px;
   border-radius: 3px; 
 }
 li.player-added-list:hover {
   cursor: pointer;
-  background-color: rgb(163, 248, 230);
+  background-color: #68e2a3;
 }
 .activePlayer {
-  background-color: rgb(163, 248, 230);
+  background-color: #68e2a3;
 }
 .info-card:hover {
-  border-color: rgb(163, 248, 230);
-  background-color: rgb(163, 248, 230);
+  border-color: #68e2a3;
+  background-color: #68e2a3;
 }
 footer {
-  height: 20px;
-  margin: 0 0 10px;
+  height: 40px;
+  padding: 10px;
   text-align: center;
+  background-color: #b8eac8;
 }
-
+footer p {
+  margin: 0;
+  color: #24b68e;
+}
 input:disabled,
 button:disabled {
   background-color: #eee;
-  color: grey;
+  color: #D3D3D3;
   border: 1px solid #e8ebef;
   cursor: not-allowed;
 }

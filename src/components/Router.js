@@ -7,12 +7,10 @@ import {
 import ActiveLeague from './ActiveLeague';
 import CreateLeague from './CreateLeague';
 import CreateRound from './CreateRound';
-import CompletedRounds from './CompletedRounds';
 import Dashboard from './Dashboard';
 import Home from './Home';
 import Login from './Login';
 import Register from './Register';
-import Standings from './Standings';
 import ViewRound from './ViewRound';
 import styled from 'styled-components';
 

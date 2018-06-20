@@ -5,7 +5,7 @@ const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 
 const LeagueCard = styled.div`
-  border: 1px solid black;
+  border: 2px solid #b8eac8;
   border-radius: 5px;
   text-align: center;
   display: inline-block;
