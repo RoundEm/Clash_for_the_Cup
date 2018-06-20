@@ -7,12 +7,13 @@ const Style = styled.div`
     width: 650px;
     margin: 7px auto;
     padding: 10px;
-    border: 1px solid black;
+    border: 2px solid #b8eac8;      
     border-radius: 5px;
-    background-color: #E6E6FA;
+    background-color: #D3D3D3;
     overflow: hidden;
     h2 {
         margin: 5px 0 15px;
+        color: #24b68e;
     }
     fieldset {
         border: none;
@@ -22,20 +23,24 @@ const Style = styled.div`
     }
     label {
         display: block;
+        color: grey;
     }
     input {
-        border: 1px solid #E6E6FA;
+        border: 1px solid #D3D3D3;
     }
     button {
         margin: 15px 0 5px;
         float: right;
     }
     div {
-        background-color: #E6E6FA;
-        border: 1px solid #E6E6FA;
+        background-color: #D3D3D3;
+        border: 1px solid #D3D3D3;
         border-radius: 5px;
         margin: 5px;
         padding: 5px;
+    }
+    p {
+        color: grey;
     }
     li {
         padding: 3px;
@@ -100,19 +105,23 @@ class CreateRound extends React.Component {
     handlePlayerClick = player => {
         const name = player.name;
         const id = player._id;
-        this.state.playersAddedToRound.includes(id) 
-            ? this.removePlayerFromRound(id)
-            : this.addPlayerToRound(id)
+        this.state.playersAddedToRound.includes(id, name) 
+            ? this.removePlayerFromRound(id, name)
+            : this.addPlayerToRound(id, name)
     }
     handleInput = e => {
         this.setState({
             [e.target.name]: e.target.value
         });
     }
-    addPlayerToRound = playerName => {
+    addPlayerToRound = id => {
+        // const player = {
+        //     name,
+        //     id
+        // }
         // console.log('add player', id)
         this.setState({
-            playersAddedToRound: [...this.state.playersAddedToRound, playerName]
+            playersAddedToRound: [...this.state.playersAddedToRound, id]
         });
     }
     removePlayerFromRound = id => {
@@ -131,7 +140,7 @@ class CreateRound extends React.Component {
             players: this.state.playersAddedToRound
         }
         for (const objValue in data) {
-            if (data[objValue] == '' || data[objValue].length === 0) {
+            if (data[objValue] === '' || data[objValue].length === 0) {
                 // TODO: make this a modal or just text on the page
                 alert('Please complete all fields and add at least 1 player');
                 return;
@@ -155,21 +164,21 @@ class CreateRound extends React.Component {
                 <div>
                     <h2>Create New Round</h2>
                     <div className="section-container">     
-                        <h3>Date</h3>
+                        <label htmlFor="round-date">Date</label>
                         <input 
                             type="date" 
                             id="round-date"
                             name="roundDate" 
                             onChange={e => this.handleInput(e)}
                         />
-                        <h3>Course</h3>
+                        <label htmlFor="round-course">Course</label>
                         <input 
                             type="text" 
                             id="round-course"
                             name="roundCourse" 
                             onChange={e => this.handleInput(e)}
                         />
-                        <h3>Round Name</h3>
+                        <label htmlFor="round-name">Round Name</label>
                         <input 
                             type="text" 
                             id="round-name" 
