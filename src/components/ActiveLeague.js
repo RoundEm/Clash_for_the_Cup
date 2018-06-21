@@ -14,7 +14,8 @@ class ActiveLeague extends React.Component {
                 leagueName: '',
                 players: [],    
                 rounds: [],
-                points: []
+                points: [],
+                pointTotals: []
             }
     }
     componentDidMount() {
@@ -40,28 +41,34 @@ class ActiveLeague extends React.Component {
                 axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/points-allocation`)
                     .then(res => {
                         console.log('all player points res: ', res.data)
-                        this.handlePointTotals(res.data)
+                        this.calculatePointTotals(res.data)
                     })
                     .catch(err => {
                         console.log(err);
             });
     }
-    handlePointTotals = data => {
-        let id = data.player;
+    calculatePointTotals = data => {
+        // TODO: update so that NaN isn't returned if no total is set???
+        // let id = data.player;
         let totalPoints = []
         data.reduce((accumulator, player) => {
             console.log(accumulator)
-            if(!accumulator[player.id]) {
-                accumulator[player.id] = {
-                    id: player.id,
+            if(!accumulator[player.player]) {
+                accumulator[player.player] = {
+                    id: player.player,
                     total: 0
                 }
-                totalPoints.push(accumulator[player.id])
+                totalPoints.push(accumulator[player.player])
             }
-            accumulator[player.id].total += player.total
+            accumulator[player.player].total += player.total
             return accumulator
         }, {});
-        console.log('totalPoints: ', totalPoints)
+        this.setState({
+            pointTotals: totalPoints
+        })
+    }
+    componentDidUpdate() {
+        console.log('totalPoints: ', this.state.pointTotals)
     }
     render() {
         return (
@@ -79,7 +86,7 @@ class ActiveLeague extends React.Component {
                 />
                 <h3>Standings:</h3>
                 <Standings 
-                    players={this.state.players}
+                    // players={this.state.players}
                     points={this.state.pointTotals}
                 />
                 <h3>Points Settings:</h3>
