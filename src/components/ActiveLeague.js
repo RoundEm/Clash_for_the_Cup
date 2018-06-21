@@ -66,6 +66,15 @@ class ActiveLeague extends React.Component {
         this.setState({
             pointTotals: totalPoints
         })
+        this.sortPointTotals()
+    }
+    sortPointTotals = () => {
+        let sortedPoints = this.state.pointTotals.sort((a, b) => {
+            return b.total - a.total
+        });
+        this.setState({
+            pointTotals: sortedPoints
+        })
     }
     componentDidUpdate() {
         console.log('totalPoints: ', this.state.pointTotals)
