@@ -13,6 +13,8 @@ const RoundCard = styled.div`
   vertical-align: top;
 `
 const RoundSummary = (props) => {
+  const playersInRound = props.players;
+  console.log('PLAYERS PROPS: ',playersInRound)
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (
     <Link 
@@ -26,7 +28,9 @@ const RoundSummary = (props) => {
         <p><b>{round.course}</b></p>
         <p><b>{moment.utc(round.date).format("MM-DD-YYYY")}</b></p>
         {round.players.map((player, i) => (
-            <p key={player + i}>{player}</p>
+          playersInRound.map((_player) => (
+            <p key={player + i}>{_player._id === player ? _player.name : ''}</p>
+          ))
         ))}
       </RoundCard>
     </Link>
