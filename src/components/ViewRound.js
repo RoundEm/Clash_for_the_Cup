@@ -16,6 +16,10 @@ const PlayerList = styled.div`
     li, p.inline-p {
         display: inline-block;
     }
+    span {
+        color: #075e15;
+        margin: 0 5px 0 0;
+    }
     input {
         width: 60px;
         margin: 10px
@@ -25,6 +29,9 @@ const PlayerList = styled.div`
     }
     table {
         margin: 5px 0 20px 5px;
+    }
+    h3 {
+        font-family: 'Contrail One', cursive;
     }
 `
 
@@ -76,12 +83,16 @@ class ViewRound extends React.Component {
             .catch(err => {
                 console.log(err);
             });
+        
+        // GET all player points this round
+        axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
+            .then(res => {
+                console.log('GET player points for round: ', res)
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
-    // onChange = input => {
-    //     this.setState({
-    //         pointsTotal: input
-    //     });
-    // }
     handlePostData = playerId => {
         const points = {
             total: this.state.pointsInput
@@ -94,24 +105,23 @@ class ViewRound extends React.Component {
                 this.setState({
                     pointsInput: ''
                 })
-                this.getPointTotals(res.data)
+                this.getPointTotals()
             })
             .catch(err => {
                 console.log(err)
             });
     }
-    getPointTotals = data => {
-        const playerId = data.player;
-        const leagueId = data.league;
-
+    getPointTotals = () => {
+        // const playerId = data.player;
+        // const leagueId = data.league;
         // GET player points from all rounds
-        axios.get(`${API_BASE_URL}/leagues/${leagueId}/points-allocation/${playerId}`)
-            .then(res => {
-                console.log('GET points res: ', res)
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        // axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/points-allocation/${playerId}`)
+        //     .then(res => {
+        //         console.log('GET points res: ', res)
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
     }
     // renderSuccessMsg = () => {
     //     this.setState({
@@ -126,9 +136,9 @@ class ViewRound extends React.Component {
         return (
             <PlayerList>
                 <h2>View Round/Edit Points</h2>
-                <p>Course: {this.state.course}</p>
-                <p>Event Name: {this.state.name}</p>
-                <p>Date: {this.state.date}</p>
+                <p><span>Course: </span>  {this.state.course}</p>
+                <p><span>Event Name: </span>  {this.state.name}</p>
+                <p><span>Date: </span>  {this.state.date}</p>
                 <h3>Points Settings:</h3>
                 <table>
                     <tbody>
@@ -142,11 +152,12 @@ class ViewRound extends React.Component {
                 </table>
                 
                 <p className="inline-p">Enter and save the total points earned in this round for each player</p>
-                <ul>
+                
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
-                            <li>{player}</li>
+                            <label htmlFor={`${player}-input`}>{player}</label>
                             <input 
+                                id={`${player}-input`}
                                 type="number" 
                                 // TODO: why didn't this with onChange method work?
                                 // onChange={e => this.onChange(e.target.value)}
@@ -165,7 +176,6 @@ class ViewRound extends React.Component {
                             </button>
                         </div>
                     ))}
-                </ul>
                 <button onClick={() => window.history.back()}>Done</button>
             </PlayerList>
         );
