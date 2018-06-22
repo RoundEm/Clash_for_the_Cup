@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'; 
+const moment = require('moment');
 
 const RoundCard = styled.div`
   border: 2px solid #b8eac8;
@@ -12,7 +13,6 @@ const RoundCard = styled.div`
   vertical-align: top;
 `
 const RoundSummary = (props) => {
-  // console.log('RoundSummary props: ', props)
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (
     <Link 
@@ -24,7 +24,7 @@ const RoundSummary = (props) => {
       >
         <p><b>{round.name}</b></p>
         <p><b>{round.course}</b></p>
-        <p><b>{round.date}</b></p>
+        <p><b>{moment.utc(round.date).format("MM-DD-YYYY")}</b></p>
         {round.players.map((player, i) => (
             <p key={player + i}>{player}</p>
         ))}

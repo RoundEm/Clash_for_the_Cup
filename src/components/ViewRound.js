@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
+const moment = require('moment');
 
 const PlayerList = styled.div`
     div.player-list {
@@ -47,20 +48,21 @@ class ViewRound extends React.Component {
             players: [], 
             pointDefinitions: [],
             pointsInput: '',
-            sucessMsg: ''
+            sucessMsg: '',
+            playerPoints: []
         }       
     }
     componentDidMount() {
         //GET round details
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/round/${this.state.roundId}`)
             .then(res => {
-                // console.log('get round: ',res.data)
+                console.log('get round info: ',res.data)
                 const data = res.data;
                 const name = data.name;
                 const course = data.course;
                 const players = data.players;
                 const date = data.date;
-                // TODO: How to get league name? The data being returned only has ID for league
+                // TODO: Get and set league name. The data being returned only has ID for league
                 this.setState({
                     players,
                     course,
@@ -88,6 +90,9 @@ class ViewRound extends React.Component {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
             .then(res => {
                 console.log('GET player points for round: ', res)
+                this.setState({
+                    playerPoints: res.data
+                });
             })
             .catch(err => {
                 console.log(err);
@@ -111,34 +116,22 @@ class ViewRound extends React.Component {
                 console.log(err)
             });
     }
-    getPointTotals = () => {
-        // const playerId = data.player;
-        // const leagueId = data.league;
-        // GET player points from all rounds
-        // axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/points-allocation/${playerId}`)
-        //     .then(res => {
-        //         console.log('GET points res: ', res)
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
-    }
     // renderSuccessMsg = () => {
     //     this.setState({
     //         sucessMsg: 'This entry has been saved'
     //     })
     // }
-    // componentDidUpdate() {
-    //     console.log('state pointsTotal: ', this.state.pointsTotal)
-    //     console.log('typeof pointsTotal', typeof this.state.pointsTotal)
-    // }
+    componentDidUpdate() {
+        console.log('state: ', this.state.playerPoints)
+        // console.log('typeof pointsTotal', typeof this.state.pointsTotal)
+    }
     render() {
         return (
             <PlayerList>
                 <h2>View Round/Edit Points</h2>
                 <p><span>Course: </span>  {this.state.course}</p>
                 <p><span>Event Name: </span>  {this.state.name}</p>
-                <p><span>Date: </span>  {this.state.date}</p>
+                <p><span>Date: </span>  {moment.utc(this.state.date).format("MM-DD-YYYY")}</p>
                 <h3>Points Settings:</h3>
                 <table>
                     <tbody>
@@ -152,23 +145,26 @@ class ViewRound extends React.Component {
                 </table>
                 
                 <p className="inline-p">Enter and save the total points earned in this round for each player</p>
-                
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
                             <label htmlFor={`${player}-input`}>{player}</label>
                             <input 
                                 id={`${player}-input`}
                                 type="number" 
-                                // TODO: why didn't this with onChange method work?
-                                // onChange={e => this.onChange(e.target.value)}
+                                value={this.state.playerPoints.map(playerPoint => (
+                                    player === playerPoint.player ? playerPoint.total : 0
+                                    // ? console.log('PLAYERPOINT',playerPoint.total)
+                                ))}
                                 onChange={e => this.setState({
                                     pointsInput: +e.target.value
                                 })}
+                                // TODO: why didn't this with onChange method work?
+                                // onChange={e => this.onChange(e.target.value)}
                             />
-                            <p className="inline-p">{this.state.sucessMsg === '' 
+                            {/* <p className="inline-p">{this.state.sucessMsg === '' 
                                     ? ''
                                     : this.state.sucessMsg
-                            }</p>
+                            }</p> */}
                             <button 
                                 onClick={() => this.handlePostData(player, this.state.pointsInput)}
                             >
