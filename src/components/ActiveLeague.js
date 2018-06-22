@@ -5,6 +5,7 @@ import Standings from './Standings';
 import { Link } from 'react-router-dom';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
+const moment = require('moment');
 
 class ActiveLeague extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class ActiveLeague extends React.Component {
                 players: [],    
                 rounds: [],
                 points: [],
-                pointTotals: []
+                pointTotals: [],
+                endDate: ''
             }
     }
     componentDidMount() {
@@ -27,12 +29,15 @@ class ActiveLeague extends React.Component {
                 const leagueName = res.data.name;
                 const rounds = res.data.rounds;
                 const points = res.data.points;
+                const endDate = res.data.endDate;
                 this.setState({
                     players,
                     leagueName,
                     rounds,
-                    points
+                    points,
+                    endDate
                 });
+                this.sortRoundsByDate();
             })
             .catch(err => {
                 console.log(err);
@@ -47,12 +52,18 @@ class ActiveLeague extends React.Component {
                         console.log(err);
             });
     }
+    sortRoundsByDate = () => {
+        let sortedRounds = this.state.rounds.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+        });
+        this.setState({
+            rounds: sortedRounds
+        });
+    }
     calculatePointTotals = data => {
         // TODO: update so that NaN isn't returned if no total is set???
-        // let id = data.player;
         let totalPoints = []
         data.reduce((accumulator, player) => {
-            console.log(accumulator)
             if(!accumulator[player.player]) {
                 accumulator[player.player] = {
                     id: player.player,
@@ -74,28 +85,28 @@ class ActiveLeague extends React.Component {
         });
         this.setState({
             pointTotals: sortedPoints
-        })
+        });
     }
     componentDidUpdate() {
-        console.log('totalPoints: ', this.state.pointTotals)
+        console.log('state: ', this.state)
     }
     render() {
         return (
             <div className="active-league">
                 <h2>League Name: <span style={{color: 'white', margin: '0 0 0 5px'}}>{this.state.leagueName}</span></h2>
+                <h3>End Date: <span style={{color: 'white', margin: '0 0 0 5px'}}>{moment.utc(this.state.endDate).format("MM-DD-YYYY")}</span></h3>
                 <h3>Players:</h3>
                 <PlayersRender 
                     players={this.state.players}
                 />
                 <h3>Rounds:</h3>
-                <Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}><button>Create New Round</button></Link>
+                <button><Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}>Create New Round</Link></button>
                 <RoundSummary 
                     rounds={this.state.rounds}
                     league={this.state.leagueId}
                 />
                 <h3>Standings:</h3>
                 <Standings 
-                    // players={this.state.players}
                     points={this.state.pointTotals}
                 />
                 <h3>Points Settings:</h3>
