@@ -27,9 +27,10 @@ const RoundSummary = (props) => {
         <p><b>{round.name}</b></p>
         <p><b>{round.course}</b></p>
         <p><b>{moment.utc(round.date).format("MM-DD-YYYY")}</b></p>
+        {/* TODO: Refactor these loops (along with CreateRound & ActiveLeague) so that you don't have to do so much looping to get name?? */}
         {round.players.map((player, i) => (
           playersInRound.map((_player) => (
-            <p key={player + i}>{_player._id === player ? _player.name : ''}</p>
+            <p key={_player.id}>{_player._id === player ? _player.name : ''}</p>
           ))
         ))}
       </RoundCard>
