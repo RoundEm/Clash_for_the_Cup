@@ -86,7 +86,7 @@ class ViewRound extends React.Component {
                 console.log(err);
             });
         
-        // GET all player points this round
+        // GET all player points for this round
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
             .then(res => {
                 console.log('GET player points for round: ', res)
@@ -121,10 +121,10 @@ class ViewRound extends React.Component {
     //         sucessMsg: 'This entry has been saved'
     //     })
     // }
-    componentDidUpdate() {
-        console.log('state: ', this.state.playerPoints)
-        // console.log('typeof pointsTotal', typeof this.state.pointsTotal)
-    }
+    // componentDidUpdate() {
+    //     console.log('playersWithPoints: ', this.state.playersWithPoints)
+    //     console.log('typeof pointsTotal', typeof this.state.pointsTotal)
+    // }
     render() {
         return (
             <PlayerList>
@@ -151,15 +151,18 @@ class ViewRound extends React.Component {
                             <input 
                                 id={`${player}-input`}
                                 type="number" 
-                                value={this.state.playerPoints.map(playerPoint => (
-                                    player === playerPoint.player ? playerPoint.total : 0
-                                    // ? console.log('PLAYERPOINT',playerPoint.total)
-                                ))}
+                                // TODO: get value to show player round totals
+                                // value={
+                                //     // this.state.playersWithPoints.find(player => (
+                                //     //     player === this.state.playerPoints.player
+                                //     // )).total
+                                //     // this.state.playerPoints.map(playerPoint => (
+                                //     // player === playerPoint.player ? playerPoint.total : 0
+                                //     // ? console.log('PLAYERPOINT',playerPoint.total)
+                                // }
                                 onChange={e => this.setState({
                                     pointsInput: +e.target.value
                                 })}
-                                // TODO: why didn't this with onChange method work?
-                                // onChange={e => this.onChange(e.target.value)}
                             />
                             {/* <p className="inline-p">{this.state.sucessMsg === '' 
                                     ? ''

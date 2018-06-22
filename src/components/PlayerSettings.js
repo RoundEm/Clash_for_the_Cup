@@ -91,7 +91,7 @@ class PlayerSettings extends React.Component {
         return (
             <div 
                 className="section-container" 
-                style={{backgroundColor: this.state.activeComponent === 0 ? '#e8ebef' : '', color: this.state.activeComponent === 0 ? 'grey' : ''}}
+                style={{backgroundColor: this.state.activeComponent === 0 ? '#e8ebef' : '', color: this.state.activeComponent === 0 ? 'grey' : 'black'}}
             >
                 <h3>Players</h3>        
                 <input

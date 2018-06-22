@@ -10,34 +10,36 @@
   min-height: calc(100vh - 25px);
   background-color: #24b68e;
 }
-.main-content div {
-  padding: 10px;
+.main-content > div {
+  padding: 15px;
 }
 nav {
   font-size: 1.5em;
   position: relative;
   padding: 18px;  
-  width: 100%;
   background-color: #b8eac8;
 }
 nav img {
   position: absolute;
-  right: 20px;
-  top: 6px;
+  right: 15px;
+  top: 8px;
 }
 h1 {
   display: inline-block;
   color: #24b68e;
   font-family: 'Contrail One', cursive;
+  text-decoration: underline;
+  text-decoration-color: #075e15;
 }
 h2 {
-  color: #efdb94;
+  color: #b8eac8;
   font-family: 'Contrail One', cursive;
 }
 h3 {
-  color: #b8eac8;
+  color: #075e15;
   margin: 20px 0 0 0;
   font-family: 'Contrail One', cursive;
+  font-size: 1.2em;
 }
 p {
   margin: 0 0 5px;
@@ -48,7 +50,7 @@ li {
 }
 a {
   text-decoration: none;
-  color: white;
+  color: black;
   margin: 0;
   padding: 0;
 }
@@ -59,7 +61,7 @@ table, th, td, tr {
   margin: 5px 0 0;
 }
 input {
-  width: 450px;
+  width: 80%;
   height: 35px;
   margin: 0 0 10px;
   padding: 3px;
@@ -67,9 +69,6 @@ input {
   border: 1px solid grey;
   border-radius: 5px;
   color: black;
-}
-input[type="date"] {
-  width: 220px;
 }
 button {
   padding: 7px;
@@ -91,6 +90,9 @@ button:hover {
 .active-league h3 {
   margin: 20px 0 0 0;
 }
+.players-in-round {
+  background-color: #075e15;
+}
 .players-in-round li:hover {
   color: grey;
 }
@@ -110,9 +112,13 @@ li.player-added-list:hover {
 .activePlayer {
   background-color: #68e2a3;
 }
+/* .info-card {
+  background-color: #4596f9;
+} */
 .info-card:hover {
   border-color: #68e2a3;
   background-color: #68e2a3;
+  color: #075e15;
 }
 footer {
   height: 40px;
@@ -131,5 +137,14 @@ button:disabled {
   border: 1px solid #e8ebef;
   cursor: not-allowed;
 }
-
+@media (max-width: 468px) {
+  nav {
+    font-size: 1.2em;
+  }
+  nav img {
+    /* position: absolute; */
+    right: 15px;
+    top: 3px;
+  }
+}
 

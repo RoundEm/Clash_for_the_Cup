@@ -5,19 +5,20 @@ import PlayerSettings from './PlayerSettings';
 import styled from 'styled-components';
 
 const Style = styled.div`
-    width: 650px;
+    width: 67%;
     margin: 7px auto;
     padding: 10px;
     border: 2px solid #b8eac8;
     border-radius: 5px;
-    background-color: #D3D3D3;
+    /* background-color: #e8dda7; */
+    background-color: #b8eac8;
     overflow: hidden;
     h2 {
         margin: 5px 0 15px;
-        color: #24b68e;
+        color: #075e15;
     }
     li, p, label {
-        color: grey;
+        color: black;
     }
     h3 {
         color: grey;
@@ -28,7 +29,10 @@ const Style = styled.div`
     input {
         border: 1px solid #D3D3D3;
     }
-    button.save-settings {
+    input[type="date"] {
+        width: 220px;
+    }
+    button.done {
         margin: 15px 0 5px;
         float: right;
     }
@@ -38,6 +42,34 @@ const Style = styled.div`
         border-radius: 5px;
         margin: 5px;
         padding: 10px;
+    }
+    @media (max-width: 768px) {
+        input {
+            width: 95%;
+        }
+        input[type="date"] {
+            width: 50%;
+        }
+        width: 85%;
+    }
+    @media (max-width: 668px) {
+        input {
+            width: 95%;
+        }
+        input[type="date"] {
+            width: 70%
+        }
+        width: 90%;
+        font-size: .85em;
+    }
+    @media (max-width: 468px) {
+        input {
+            width: 95%;
+        }
+        input[type="date"] {
+            width: 70%
+        }
+        width: 100%;
     }
 `
 
@@ -67,19 +99,17 @@ class CreateLeague extends React.Component {
                     <h2>Create League</h2>
                     <BasicSettings 
                         onSave={this.handleBasicSave} 
-                        // active={this.state.activeComponent === 1}
                     />
                     <PlayerSettings 
                         leagueId={this.state.leagueId} 
                         onSave={this.handlePlayerSave}
                         ref="childBasic"
-
                     />
                     <PointSettings 
                         leagueId={this.state.leagueId} 
                         ref="childPlayer"
                     />
-                    <button onClick={() => window.history.back()}>Done</button>
+                    <button className="done" onClick={() => window.history.back()}>Done</button>
                 </div>
             </Style>
         );

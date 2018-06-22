@@ -4,7 +4,7 @@ const Footer = () => {
     const date = new Date();
     const year = date.getFullYear();
     return (
-        <footer>
+        <footer role="contentinfo">
             <p>&#169; Jason Roundtree {year}</p>
         </footer>
     );

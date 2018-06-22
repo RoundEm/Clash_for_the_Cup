@@ -50,7 +50,7 @@ class EditableField extends React.Component {
     )
     renderEdits = value => (
         <div>
-            <input type="text" value={this.state.input || value} onChange={this.handleInput} />  
+            <input type="text" value={this.state.input} onChange={this.handleInput} />  
             <img src={closeIcon} alt="Close icon" onClick={this.onClose} />
         </div>
     )

@@ -4,48 +4,46 @@ const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 
 const Style = styled.div`
-    width: 650px;
+    width: 60%;
     margin: 7px auto;
     padding: 10px;
     border: 2px solid #b8eac8;      
     border-radius: 5px;
-    background-color: #D3D3D3;
+    /* background-color: #e8dda7; */
+    background-color: #b8eac8;
     overflow: hidden;
     h2 {
         margin: 5px 0 15px;
-        color: #24b68e;
-    }
-    fieldset {
-        border: none;
-        border-radius: 5px;
-        background: white;
-        padding: 10px;
+        color: #075e15;
     }
     label {
         display: block;
-        color: grey;
+        color: black;
     }
     input {
         border: 1px solid #D3D3D3;
+    }
+    input[type="date"] {
+        width: 220px;
     }
     button {
         margin: 15px 0 5px;
         float: right;
     }
     div {
-        background-color: #D3D3D3;
-        border: 1px solid #D3D3D3;
+        background-color: #b8eac8;
         border-radius: 5px;
         margin: 5px;
         padding: 5px;
     }
     p {
-        color: grey;
+        color: black;
     }
     li {
         padding: 3px;
         margin: 2px;
         border-radius: 3px;
+        color: #075e15;
     }
     li:hover {
         cursor: pointer;
@@ -60,6 +58,34 @@ const Style = styled.div`
         border-radius: 5px;
         margin: 5px;
         padding: 10px;
+    }
+    @media (max-width: 768px) {
+        input {
+            width: 95%;
+        }
+        input[type="date"] {
+            width: 50%;
+        }
+        width: 85%;
+    }
+    @media (max-width: 668px) {
+        input {
+            width: 95%;
+        }
+        input[type="date"] {
+            width: 70%
+        }
+        width: 90%;
+        font-size: .85em;
+    }
+    @media (max-width: 468px) {
+        input {
+            width: 95%;
+        }
+        input[type="date"] {
+            width: 70%
+        }
+        width: 100%;
     }
 `
 

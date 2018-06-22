@@ -15,7 +15,6 @@ class RenderPlayers extends React.Component {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
                 const players = res.data.players;
-                console.log('players: ', players);
                 this.setState({
                     players
                 });

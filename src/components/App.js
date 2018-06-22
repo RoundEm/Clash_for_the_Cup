@@ -12,7 +12,7 @@ const App = () => {
                 <div className="header-nav">
                     <Navigation />  
                 </div>
-                <div className="main-content">
+                <div className="main-content" role="main">
                     <div>
                         <Router />
                     </div>

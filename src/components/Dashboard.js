@@ -12,6 +12,9 @@ const LeagueCard = styled.div`
   padding: 10px;
   margin: 10px;
   vertical-align: top;
+  .info-card:hover {
+    color: #075e15;
+  }
 `
 
 class Dashboard extends React.Component {
@@ -57,7 +60,7 @@ class Dashboard extends React.Component {
     return (
         <div>
           <Link to="/dashboard/create-league"><button style={{margin: '15px auto'}}>Create New League</button></Link>
-          <h2>Active Leagues:</h2>
+          <h2 aria-live="assertive">Active Leagues:</h2>
           {this.renderLeagues()}
         </div>
     );
