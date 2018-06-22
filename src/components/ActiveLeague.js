@@ -99,15 +99,18 @@ class ActiveLeague extends React.Component {
                 <PlayersRender 
                     players={this.state.players}
                 />
+                <h3>Standings:</h3>
+                <p>Only players with points will show in standings</p>
+                <Standings 
+                    points={this.state.pointTotals}
+                    players={this.state.players}
+                />
                 <h3>Rounds:</h3>
                 <button><Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}>Create New Round</Link></button>
                 <RoundSummary 
                     rounds={this.state.rounds}
                     league={this.state.leagueId}
-                />
-                <h3>Standings:</h3>
-                <Standings 
-                    points={this.state.pointTotals}
+                    players={this.state.players}
                 />
                 <h3>Points Settings:</h3>
                 {/* TODO: Make this a component and also use it on ViewRound component */}
