@@ -28,8 +28,6 @@ class PointSettings extends React.Component {
         })
         Promise.all(promises)
             .then(res => {
-                // TODO: look into why log is undefined
-                console.log('POST points res.data: ', res)
                 this.setState({
                     activeComponent: 0
                 });
@@ -46,11 +44,12 @@ class PointSettings extends React.Component {
     }
     onUpdate = (type, weight) => {
         const indexOfPointType = this.state.pointsDefinitions.findIndex(obj => obj.type === type);
-        const cachedSetting = clone(this.state.pointsDefinitions[indexOfPointType]);
-        console.log('cachedSetting: ', cachedSetting)
+        // TODO: Does this do anything anymore? Seems like it's messing with the input value
+        // const cachedSetting = clone(this.state.pointsDefinitions[indexOfPointType]);
+        // console.log('cachedSetting: ', cachedSetting)
         const newPointsDefinition = 
             Object.assign({...this.state.pointsDefinitions[indexOfPointType]}, 
-                { type: type, weight: weight || cachedSetting.weight})
+                { type: type, weight: weight})
         this.setState({
             pointsDefinitions: [...this.state.pointsDefinitions.slice(0, indexOfPointType), newPointsDefinition, ...this.state.pointsDefinitions.slice(indexOfPointType + 1)]
         });
@@ -61,7 +60,7 @@ class PointSettings extends React.Component {
         });
         const newDefinition = {
             type: this.state.input,
-            weight: ''
+            weight: 0
         }
         this.setState({
             pointsDefinitions: [...this.state.pointsDefinitions, newDefinition],
@@ -79,14 +78,14 @@ class PointSettings extends React.Component {
             />
         ));
     }
-    componentDidUpdate() {
-        console.log('PointSettings this.state: ',this.state)
-    }
+    // componentDidUpdate() {
+    //     console.log('PointSettings this.state: ',this.state)
+    // }
     render() {
         return (
             <div 
                 className="section-container"
-                style={{backgroundColor: this.state.activeComponent === 0 ? '#e8ebef' : '', color: this.state.activeComponent === 0 ? 'grey' : ''}}
+                style={{backgroundColor: this.state.activeComponent === 0 ? '#e8ebef' : '', color: this.state.activeComponent === 0 ? 'grey' : 'black'}}
             >
                 <h3>Point Settings</h3>
                 <p>First create the point types, then you can assign point weights after the types are set.</p> 
