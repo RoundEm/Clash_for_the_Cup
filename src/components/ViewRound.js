@@ -49,10 +49,22 @@ class ViewRound extends React.Component {
             pointDefinitions: [],
             pointsInput: '',
             sucessMsg: '',
-            playerPoints: []
+            playerPoints: [],
+            leaguePlayers: []
         }       
     }
     componentDidMount() {
+        // GET league players for name lookup
+        axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
+            .then(res => {
+                console.log('GET league players res: ', res.data.players)
+                this.setState({
+                    leaguePlayers: res.data.players
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
         //GET round details
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/round/${this.state.roundId}`)
             .then(res => {
@@ -77,7 +89,6 @@ class ViewRound extends React.Component {
         // GET league points & weighting
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/point-weighting`)
             .then(res => {
-                // console.log('point weight res data: ', res.data)
                 this.setState({
                     pointDefinitions: res.data
                 });
@@ -89,9 +100,8 @@ class ViewRound extends React.Component {
         // GET all player points for this round
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
             .then(res => {
-                console.log('GET player points for round: ', res)
                 this.setState({
-                    playerPoints: res.data
+                    playerPoints: [...this.state.playerPoints, res.data]
                 });
             })
             .catch(err => {
@@ -106,7 +116,6 @@ class ViewRound extends React.Component {
         // POST player points for round
         axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation/${playerId}`, points)
             .then(res => {
-                console.log('post points res: ', res)
                 this.setState({
                     pointsInput: ''
                 })
@@ -121,10 +130,10 @@ class ViewRound extends React.Component {
     //         sucessMsg: 'This entry has been saved'
     //     })
     // }
-    // componentDidUpdate() {
-    //     console.log('playersWithPoints: ', this.state.playersWithPoints)
-    //     console.log('typeof pointsTotal', typeof this.state.pointsTotal)
-    // }
+    componentDidUpdate() {
+        console.log('playerPoints: ', this.state.playerPoints)
+        console.log('PLAYERS', this.state.players)
+    }
     render() {
         return (
             <PlayerList>
@@ -147,19 +156,22 @@ class ViewRound extends React.Component {
                 <p className="inline-p">Enter and save the total points earned in this round for each player</p>
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
-                            <label htmlFor={`${player}-input`}>{player}</label>
+                            {this.state.leaguePlayers.map((_player) => (
+                                <label htmlFor={`${player}-input`}>
+                                    {_player._id === player ? _player.name : ''}
+                                </label>
+                            ))}
                             <input 
                                 id={`${player}-input`}
                                 type="number" 
                                 // TODO: get value to show player round totals
-                                // value={
-                                //     // this.state.playersWithPoints.find(player => (
-                                //     //     player === this.state.playerPoints.player
-                                //     // )).total
-                                //     // this.state.playerPoints.map(playerPoint => (
-                                //     // player === playerPoint.player ? playerPoint.total : 0
-                                //     // ? console.log('PLAYERPOINT',playerPoint.total)
-                                // }
+                                value={
+                                    this.state.playerPoints.map(playerPoint => (
+                                        player === playerPoint.player 
+                                            ? playerPoint.total 
+                                            : 0
+                                        // console.log('PLAYERPOINT',playerPoint.total)
+                                        ))}
                                 onChange={e => this.setState({
                                     pointsInput: +e.target.value
                                 })}
@@ -168,11 +180,7 @@ class ViewRound extends React.Component {
                                     ? ''
                                     : this.state.sucessMsg
                             }</p> */}
-                            <button 
-                                onClick={() => this.handlePostData(player, this.state.pointsInput)}
-                            >
-                                Save
-                            </button>
+                            <button onClick={() => this.handlePostData(player)}>Save</button>
                         </div>
                     ))}
                 <button onClick={() => window.history.back()}>Done</button>
