@@ -101,7 +101,7 @@ class ViewRound extends React.Component {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
             .then(res => {
                 this.setState({
-                    playerPoints: [...this.state.playerPoints, res.data]
+                    playerPoints: res.data
                 });
             })
             .catch(err => {
@@ -130,10 +130,6 @@ class ViewRound extends React.Component {
     //         sucessMsg: 'This entry has been saved'
     //     })
     // }
-    componentDidUpdate() {
-        console.log('playerPoints: ', this.state.playerPoints)
-        console.log('PLAYERS', this.state.players)
-    }
     render() {
         return (
             <PlayerList>
@@ -163,15 +159,12 @@ class ViewRound extends React.Component {
                             ))}
                             <input 
                                 id={`${player}-input`}
-                                type="number" 
-                                // TODO: get value to show player round totals
-                                value={
-                                    this.state.playerPoints.map(playerPoint => (
-                                        player === playerPoint.player 
+                                type="text" 
+                                value={this.state.playerPoints.reduce((acc, playerPoint) => {
+                                        return player === playerPoint.player 
                                             ? playerPoint.total 
-                                            : 0
-                                        // console.log('PLAYERPOINT',playerPoint.total)
-                                        ))}
+                                            : acc
+                                        }, 0)}
                                 onChange={e => this.setState({
                                     pointsInput: +e.target.value
                                 })}
