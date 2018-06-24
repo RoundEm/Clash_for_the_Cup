@@ -27,12 +27,16 @@ const PlayerList = styled.div`
     }
     button {
         display: inline-block;
+        margin-right: 5px;
     }
     table {
         margin: 5px 0 20px 5px;
     }
     h3 {
         font-family: 'Contrail One', cursive;
+    }
+    span {
+        margin-left: 5px;
     }
 `
 
@@ -48,7 +52,6 @@ class ViewRound extends React.Component {
             players: [], 
             pointDefinitions: [],
             pointsInput: '',
-            sucessMsg: '',
             playerPoints: [],
             leaguePlayers: []
         }       
@@ -74,7 +77,7 @@ class ViewRound extends React.Component {
                 const course = data.course;
                 const players = data.players;
                 const date = data.date;
-                // TODO: Get and set league name. The data being returned only has ID for league
+                // TODO: Get and set league name? fyi - The data being returned only has ID for league
                 this.setState({
                     players,
                     course,
@@ -92,12 +95,24 @@ class ViewRound extends React.Component {
                 this.setState({
                     pointDefinitions: res.data
                 });
+                this.getPlayerPoints();
             })
             .catch(err => {
                 console.log(err);
             });
         
         // GET all player points for this round
+        // axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
+        //     .then(res => {
+        //         this.setState({
+        //             playerPoints: res.data
+        //         });
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     });
+    }
+    getPlayerPoints = () => {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
             .then(res => {
                 this.setState({
@@ -118,18 +133,13 @@ class ViewRound extends React.Component {
             .then(res => {
                 this.setState({
                     pointsInput: ''
-                })
-                this.getPointTotals()
+                });
+                this.getPlayerPoints();
             })
             .catch(err => {
                 console.log(err)
             });
     }
-    // renderSuccessMsg = () => {
-    //     this.setState({
-    //         sucessMsg: 'This entry has been saved'
-    //     })
-    // }
     render() {
         return (
             <PlayerList>
@@ -148,32 +158,36 @@ class ViewRound extends React.Component {
                         ))}
                     </tbody>
                 </table>
-                
-                <p className="inline-p">Enter and save the total points earned in this round for each player</p>
+                <p className="inline-p">Enter and save the total points earned in this round for each player. NOTE: Saving a new total for a player that has already had one set will cause the previous total to be overridden.</p>
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
                             {this.state.leaguePlayers.map((_player) => (
                                 <label htmlFor={`${player}-input`}>
-                                    {_player._id === player ? _player.name : ''}
+                                    {_player._id === player ?
+                                         _player.name 
+                                         : ''
+                                    }
                                 </label>
                             ))}
                             <input 
                                 id={`${player}-input`}
-                                type="text" 
-                                value={this.state.playerPoints.reduce((acc, playerPoint) => {
-                                        return player === playerPoint.player 
-                                            ? playerPoint.total 
-                                            : acc
-                                        }, 0)}
+                                type="number" 
                                 onChange={e => this.setState({
                                     pointsInput: +e.target.value
                                 })}
+                                
                             />
-                            {/* <p className="inline-p">{this.state.sucessMsg === '' 
-                                    ? ''
-                                    : this.state.sucessMsg
-                            }</p> */}
                             <button onClick={() => this.handlePostData(player)}>Save</button>
+                            <p className='inline-p'>Current Total: 
+                                <span>
+                                    {this.state.playerPoints.reduce((acc, playerPoint) => {
+                                        return player === playerPoint.player 
+                                            ? playerPoint.total 
+                                            : acc
+                                        }, '')
+                                    }
+                                </span>
+                            </p>
                         </div>
                     ))}
                 <button onClick={() => window.history.back()}>Done</button>
@@ -183,25 +197,3 @@ class ViewRound extends React.Component {
 }
 
 export default ViewRound;
-
-// onChange = (id, input) => {
-//     console.log('player Id: ', id)
-//     console.log('point input: ', input)
-    // const state = {
-        // playerPoints: {
-            // 1: {
-                // birdie: 10
-                //}
-        // }
-    // }
-    // const playerPoints = {
-    //     ...playerPoints,
-    //     [id]: {
-            
-    //         this.state.playerPoints[id]
-    //     }
-    // }
-    // this.setState({
-    //     playerPoints
-    // })
-// }
