@@ -5,7 +5,6 @@ import styled from 'styled-components';
 const PointDefRow = styled.div`
     width: 40%;
     display: flex;
-    /* justify-content: space-between; */
     border-bottom: 1px solid rgb(163, 248, 230);
     padding: 5px 0 0;
     p {
@@ -17,11 +16,11 @@ const PointDefRow = styled.div`
 const PointsDefinition = props => {
     return (
         <PointDefRow>
-                <p>{props.type}:</p>
-                <EditableField 
-                    value={props.weight} 
-                    onUpdate={text => props.onUpdate(props.type, text)}
-                />
+            <p>{props.type}:</p>
+            <EditableField 
+                value={props.weight} 
+                onUpdate={text => props.onUpdate(props.type, text)}
+            />
         </PointDefRow>
     );
 

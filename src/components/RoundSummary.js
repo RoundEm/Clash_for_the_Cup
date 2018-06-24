@@ -14,23 +14,25 @@ const RoundCard = styled.div`
 `
 const RoundSummary = (props) => {
   const playersInRound = props.players;
-  console.log('PLAYERS PROPS: ',playersInRound)
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (
     <Link 
       to={`/dashboard/leagues/${leagueId}/round/${round._id}`}
       key={round + i}
     >
-      <RoundCard 
-        className="info-card"
-      >
+      <RoundCard className="info-card">
         <p><b>{round.name}</b></p>
         <p><b>{round.course}</b></p>
         <p><b>{moment.utc(round.date).format("MM-DD-YYYY")}</b></p>
-        {/* TODO: Refactor these loops (along with CreateRound & ActiveLeague) so that you don't have to do so much looping to get name?? */}
+        {/* TODO: Refactor these loops (along with CreateRound & ActiveLeague) so that you don't have to do so much looping to get name */}
         {round.players.map((player, i) => (
           playersInRound.map((_player) => (
-            <p key={_player.id}>{_player._id === player ? _player.name : ''}</p>
+            <p key={_player._id}>
+                {_player._id === player 
+                  ? _player.name 
+                  : ''
+                }
+            </p>
           ))
         ))}
       </RoundCard>

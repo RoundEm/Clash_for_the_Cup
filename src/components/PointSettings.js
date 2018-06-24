@@ -78,9 +78,9 @@ class PointSettings extends React.Component {
             />
         ));
     }
-    // componentDidUpdate() {
-    //     console.log('PointSettings this.state: ',this.state)
-    // }
+    componentDidUpdate() {
+        console.log('PointSettings this.state: ',this.state)
+    }
     render() {
         return (
             <div 
@@ -106,7 +106,9 @@ class PointSettings extends React.Component {
                 >
                     Add Points
                 </button>
+
                 {this.renderDefinitions()}
+                
                 <button 
                     onClick={this.handlePointsData}
                     disabled={this.state.activeComponent === 0 ? true : false}

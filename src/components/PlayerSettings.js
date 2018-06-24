@@ -24,9 +24,9 @@ class PlayerSettings extends React.Component {
     }
     handleAddPlayer = () => {
         if (this.state.input === "") {
-            alert('You must enter some data first');
+            alert('Please enter players first');
         } else if (this.state.playersAdded.includes(this.state.input)) {
-            alert('This entry has already been added');
+            alert('This player has already been added');
         } else {
             const newPlayer = {
                 name: this.state.input.trim(),
@@ -70,9 +70,9 @@ class PlayerSettings extends React.Component {
         return axios.post(`${API_BASE_URL}/leagues/${this.props.leagueId}/players`, player)
             
     }
-    componentDidUpdate() {
-        console.log('PlayerSettings state: ', this.state)
-    }
+    // componentDidUpdate() {
+    //     console.log('PlayerSettings state: ', this.state)
+    // }
     render() {
         const players = this.state.playersAdded.map((data, i) => (
             <li 
