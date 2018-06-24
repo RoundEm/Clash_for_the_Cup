@@ -21,7 +21,7 @@ class ActiveLeague extends React.Component {
             }
     }
     componentDidMount() {
-        // GET league players
+        // GET league info
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
                 console.log('league players res.data: ', res.data)
@@ -38,6 +38,7 @@ class ActiveLeague extends React.Component {
                     endDate
                 });
                 this.sortRoundsByDate();
+                this.sortPointWeights();
             })
             .catch(err => {
                 console.log(err);
@@ -53,15 +54,16 @@ class ActiveLeague extends React.Component {
             });
     }
     sortRoundsByDate = () => {
-        let sortedRounds = this.state.rounds.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        });
+        let sortedRounds = this.state.rounds.sort((a, b) => (
+            new Date(b.date) - new Date(a.date)
+        ));
         this.setState({
             rounds: sortedRounds
         });
     }
     calculatePointTotals = data => {
         // TODO: update so that NaN isn't returned if no total is set???
+        // Create array with total points for each player
         let totalPoints = []
         data.reduce((accumulator, player) => {
             if(!accumulator[player.player]) {
@@ -77,18 +79,24 @@ class ActiveLeague extends React.Component {
         this.setState({
             pointTotals: totalPoints
         })
-        this.sortPointTotals()
+        this.sortPointTotals();
+        
     }
     sortPointTotals = () => {
-        let sortedPoints = this.state.pointTotals.sort((a, b) => {
-            return b.total - a.total
-        });
+        let sortedPoints = this.state.pointTotals.sort((a, b) => (
+            b.total - a.total
+        ));
         this.setState({
             pointTotals: sortedPoints
         });
     }
-    componentDidUpdate() {
-        console.log('state: ', this.state)
+    sortPointWeights = () => {
+        let sortedPointWeights = this.state.points.sort((a, b) => (
+            b.weight - a.weight
+        ));
+        this.setState({
+            points: sortedPointWeights
+        })
     }
     render() {
         return (
@@ -100,7 +108,6 @@ class ActiveLeague extends React.Component {
                     players={this.state.players}
                 />
                 <h3>Standings:</h3>
-                <p>Only players with points will show in standings</p>
                 <Standings 
                     points={this.state.pointTotals}
                     players={this.state.players}

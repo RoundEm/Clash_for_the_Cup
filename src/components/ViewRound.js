@@ -19,11 +19,12 @@ const PlayerList = styled.div`
     }
     span {
         color: #075e15;
-        margin: 0 5px 0 0;
+        margin-right: 5px;
     }
     input {
         width: 60px;
-        margin: 10px
+        margin: 10px;
+        border-color: #b8eac8;
     }
     button {
         display: inline-block;
@@ -35,9 +36,7 @@ const PlayerList = styled.div`
     h3 {
         font-family: 'Contrail One', cursive;
     }
-    span {
-        margin-left: 5px;
-    }
+
 `
 
 class ViewRound extends React.Component {
@@ -96,23 +95,14 @@ class ViewRound extends React.Component {
                     pointDefinitions: res.data
                 });
                 this.getPlayerPoints();
+                this.sortPointWeights();
             })
             .catch(err => {
                 console.log(err);
             });
-        
-        // GET all player points for this round
-        // axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
-        //     .then(res => {
-        //         this.setState({
-        //             playerPoints: res.data
-        //         });
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     });
     }
     getPlayerPoints = () => {
+        // GET existing player points for this round
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation`)
             .then(res => {
                 this.setState({
@@ -140,6 +130,14 @@ class ViewRound extends React.Component {
                 console.log(err)
             });
     }
+    sortPointWeights = () => {
+        let sortedPointWeights = this.state.pointDefinitions.sort((a, b) => (
+            b.weight - a.weight
+        ));
+        this.setState({
+            points: sortedPointWeights
+        })
+    }
     render() {
         return (
             <PlayerList>
@@ -158,7 +156,8 @@ class ViewRound extends React.Component {
                         ))}
                     </tbody>
                 </table>
-                <p className="inline-p">Enter and save the total points earned in this round for each player. NOTE: Saving a new total for a player that has already had one set will cause the previous total to be overridden.</p>
+                <p className="inline-p">Enter and save the total points earned in this round for each player.</p><br />
+                <p style={{fontStyle: 'italic'}}><span>NOTE:</span> Saving a new total for a player that has already had one set will cause the previous total to be overridden</p>
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
                             {this.state.leaguePlayers.map((_player) => (
@@ -179,7 +178,7 @@ class ViewRound extends React.Component {
                             />
                             <button onClick={() => this.handlePostData(player)}>Save</button>
                             <p className='inline-p'>Current Total: 
-                                <span>
+                                <span style={{marginLeft: 7}}>
                                     {this.state.playerPoints.reduce((acc, playerPoint) => {
                                         return player === playerPoint.player 
                                             ? playerPoint.total 
