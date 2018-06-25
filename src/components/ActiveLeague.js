@@ -24,7 +24,6 @@ class ActiveLeague extends React.Component {
         // GET league info
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
-                console.log('league players res.data: ', res.data)
                 const players = res.data.players;
                 const leagueName = res.data.name;
                 const rounds = res.data.rounds;
@@ -46,7 +45,6 @@ class ActiveLeague extends React.Component {
              // GET all players total points
                 axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/points-allocation`)
                     .then(res => {
-                        console.log('all player points res: ', res.data)
                         this.calculatePointTotals(res.data)
                     })
                     .catch(err => {
@@ -131,7 +129,7 @@ class ActiveLeague extends React.Component {
                         ))}
                     </tbody>
                 </table>
-                <button>Done</button>
+                <button onClick={() => window.history.back()}>Done</button>
             </div>
             
         );

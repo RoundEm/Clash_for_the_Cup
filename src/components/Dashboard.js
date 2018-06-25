@@ -29,7 +29,6 @@ class Dashboard extends React.Component {
     axios.get(`${API_BASE_URL}/leagues`)
       .then(res => {
         const leagues = res.data
-        console.log('league res: ', res.data)
         this.setState({
           leagues
         });
@@ -53,13 +52,10 @@ class Dashboard extends React.Component {
       </LeagueCard>
     </Link>
   ));
-  componentDidUpdate() {
-    console.log('this.state.leagues: ', this.state.leagues)
-  }
   render() {
     return (
         <div>
-          <Link to="/dashboard/create-league"><button style={{margin: '15px auto'}}>Create New League</button></Link>
+         <button style={{margin: '15px auto'}}><Link to="/dashboard/create-league">Create New League</Link></button>
           <h2 aria-live="assertive">Active Leagues:</h2>
           {this.renderLeagues()}
         </div>
