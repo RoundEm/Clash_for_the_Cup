@@ -73,6 +73,7 @@ input {
 button {
   padding: 7px;
   margin: 10px 0 0;
+  border: 2px solid #b8eac8;
   border-radius: 5px;
   font-size: .9em;
   display: block;
@@ -81,6 +82,13 @@ button {
 button.add-button {
   margin: 0 0 0 8px;
   display: inline-block;
+}
+button.delete {
+  margin-top: 30px;
+  border: 2px solid #f25c5c;
+}
+button.delete:hover {
+  background-color: #f78c8c;
 }
 button:hover {
   background-color: #68e2a3;
@@ -142,7 +150,6 @@ button:disabled {
     font-size: 1.2em;
   }
   nav img {
-    /* position: absolute; */
     right: 15px;
     top: 3px;
   }

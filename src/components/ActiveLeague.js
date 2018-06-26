@@ -17,7 +17,8 @@ class ActiveLeague extends React.Component {
                 rounds: [],
                 points: [],
                 pointTotals: [],
-                endDate: ''
+                endDate: '',
+                deleteMsg: ''
             }
     }
     componentDidMount() {
@@ -96,6 +97,21 @@ class ActiveLeague extends React.Component {
             points: sortedPointWeights
         })
     }
+    handleDeleteLeague = id => {
+        let answer = window.confirm('Are you sure you want to delete this league?')
+        if (answer) {
+            axios.delete(`${API_BASE_URL}/leagues/${id}`)
+                .then(res => {
+                    console.log(res);
+                    this.setState({
+                        deleteMsg: 'This league has sucessfully been deleted'
+                    })
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        }
+    }
     render() {
         return (
             <div className="active-league">
@@ -130,6 +146,16 @@ class ActiveLeague extends React.Component {
                     </tbody>
                 </table>
                 <button onClick={() => window.history.back()}>Done</button>
+                <p style={{color: '#f9dd72'}}>{this.state.deleteMsg === '' 
+                    ? ''
+                    : this.state.deleteMsg
+                }</p>
+                <button 
+                    onClick={() => this.handleDeleteLeague(this.state.leagueId)}
+                    className="delete"
+                >
+                    Delete League
+                </button>
             </div>
             
         );
