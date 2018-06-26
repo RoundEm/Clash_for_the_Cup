@@ -7,4 +7,8 @@ describe('<ActiveLeague />', () => {
     it('Renders without crashing', () => {
         shallow(<ActiveLeague />);
     });
+
+    // TODO: not sure what to test on this decodeURIComponent
+    // it('Should ')
 });
+

@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
   render() {
     return (
         <div>
-         <button style={{margin: '15px auto'}}><Link to="/dashboard/create-league">Create New League</Link></button>
+          <button style={{margin: '15px auto'}}><Link to="/dashboard/create-league">Create New League</Link></button>
           <h2 aria-live="assertive">Active Leagues:</h2>
           {this.renderLeagues()}
         </div>

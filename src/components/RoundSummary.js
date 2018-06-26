@@ -12,7 +12,7 @@ const RoundCard = styled.div`
   margin: 10px;
   vertical-align: top;
 `
-const RoundSummary = (props) => {
+const RoundSummary = props => {
   const playersInRound = props.players;
   const leagueId = props.league;
   const completedRounds = props.rounds.map((round, i) => (

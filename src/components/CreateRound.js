@@ -9,7 +9,6 @@ const Style = styled.div`
     padding: 10px;
     border: 2px solid #b8eac8;      
     border-radius: 5px;
-    /* background-color: #e8dda7; */
     background-color: #b8eac8;
     overflow: hidden;
     h2 {
@@ -28,7 +27,6 @@ const Style = styled.div`
     }
     button {
         margin: 15px 0 5px;
-        float: right;
     }
     div {
         background-color: #b8eac8;
@@ -48,10 +46,6 @@ const Style = styled.div`
     li:hover {
         cursor: pointer;
     } 
-    button.save-settings {
-        margin: 15px 0 5px;
-        float: right;
-    }
     div.section-container {
         background-color: white;
         border: 1px solid #E6E6FA;
@@ -116,7 +110,6 @@ class CreateRound extends React.Component {
             });
     }
     renderPlayers = () => this.state.playersInLeague.map((player, i) => (
-        // console.log('player._id: ', player._id)
         <li 
             key={player._id + i}
             onClick={() => this.handlePlayerClick(player)}
@@ -141,17 +134,11 @@ class CreateRound extends React.Component {
         });
     }
     addPlayerToRound = id => {
-        // const player = {
-        //     name,
-        //     id
-        // }
-        // console.log('add player', id)
         this.setState({
             playersAddedToRound: [...this.state.playersAddedToRound, id]
         });
     }
     removePlayerFromRound = id => {
-        // console.log('delete player', id)
         const playerIndex = this.state.playersAddedToRound.indexOf(id);
         this.setState({
             playersAddedToRound: [...this.state.playersAddedToRound.filter((_, i) => i !== playerIndex)]
@@ -174,15 +161,11 @@ class CreateRound extends React.Component {
         }
         axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/round`, data)
             .then(res => {
-                console.log('posted round:', res)
                 window.history.back()
             })
             .catch(err => {
                 console.log(err);
             });
-    }
-    componentDidUpdate() {
-        console.log('this.state: ', this.state)
     }
     render() {
         return (

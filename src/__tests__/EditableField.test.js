@@ -7,4 +7,8 @@ describe('<EditableField />', () => {
     it('Renders without crashing', () => {
         shallow(<EditableField />);
     });
+
+    // it('onClose method should toggle `editable` state', () => {
+
+    // });
 });

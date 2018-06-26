@@ -7,4 +7,9 @@ describe('<BasicSettings />', () => {
     it('Renders without crashing', () => {
         shallow(<BasicSettings />);
     });
+
+    // TODO: not sure what to test, no sub-components
+    // it('Should', () => {
+        
+    // });
 });

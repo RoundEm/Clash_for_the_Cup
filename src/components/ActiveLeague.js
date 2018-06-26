@@ -104,7 +104,7 @@ class ActiveLeague extends React.Component {
                 .then(res => {
                     console.log(res);
                     this.setState({
-                        deleteMsg: 'This league has sucessfully been deleted'
+                        deleteMsg: 'This league has successfully been deleted'
                     })
                 })
                 .catch(err => {
@@ -146,16 +146,16 @@ class ActiveLeague extends React.Component {
                     </tbody>
                 </table>
                 <button onClick={() => window.history.back()}>Done</button>
-                <p style={{color: '#f9dd72'}}>{this.state.deleteMsg === '' 
-                    ? ''
-                    : this.state.deleteMsg
-                }</p>
                 <button 
                     onClick={() => this.handleDeleteLeague(this.state.leagueId)}
                     className="delete"
                 >
                     Delete League
                 </button>
+                <p style={{color: '#f9dd72'}}>{this.state.deleteMsg === '' 
+                    ? ''
+                    : this.state.deleteMsg
+                }</p>
             </div>
             
         );

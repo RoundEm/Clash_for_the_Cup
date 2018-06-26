@@ -5,7 +5,6 @@ const { API_BASE_URL } = require('../config');
 class Players extends React.Component {
     constructor(props) {
         super(props);
-        // TODO: is it better to somehow send playersAddedToRound data to CreateRound?
         this.state = {
             leagueId: window.location.pathname.split('/')[3],
             playersInLeague: this.props.players || [],
@@ -17,7 +16,6 @@ class Players extends React.Component {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
                 const playersInLeague = res.data.players;
-                console.log('players: ', playersInLeague);
                 this.setState({
                     playersInLeague
                 });
@@ -33,13 +31,11 @@ class Players extends React.Component {
             : this.addPlayerToRound(id)
     }
     addPlayerToRound = id => {
-        // console.log('add player', id)
         this.setState({
             playersAddedToRound: [...this.state.playersAddedToRound, id]
         });
     }
     removePlayerFromRound = id => {
-        // console.log('delete player', id)
         const playerIndex = this.state.playersAddedToRound.indexOf(id);
         this.setState({
             playersAddedToRound: [...this.state.playersAddedToRound.filter((_, i) => i !== playerIndex)]
@@ -72,9 +68,6 @@ class Players extends React.Component {
             .catch(err => {
                 console.log(err);
             });
-    }
-    componentDidUpdate() {
-        console.log('playersAddedToRound: ', this.state.playersAddedToRound)
     }
     render() {
         return (

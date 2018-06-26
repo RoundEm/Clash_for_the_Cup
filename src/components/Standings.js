@@ -3,8 +3,6 @@ const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 
 const Standings = props => {
-  console.log('Standings props: ', props)
-  // const playersWithPoints = props.players;
   return (
       <table>
         <tbody>

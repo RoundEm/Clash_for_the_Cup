@@ -7,4 +7,12 @@ describe('<PlayersRender />', () => {
     it('Renders without crashing', () => {
         shallow(<PlayersRender />);
     });
+
+    // it('calls componentDidMount', () => {
+
+    // });
+
+    // it('renders players', () => {
+        
+    // });
 });
