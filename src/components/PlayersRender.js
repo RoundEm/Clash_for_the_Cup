@@ -14,27 +14,34 @@ class RenderPlayers extends React.Component {
         // GET league players
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
-                const players = res.data.players;
+                let players = res.data.players;
                 this.setState({
                     players
                 });
+                this.sortPlayers();
             })
             .catch(err => {
                 console.log(err);
             });
     }
-    renderPlayers = () => this.state.players.map((player, i) => (
-        <li 
-            key={player.name + i}
-        >
-            {player.name}
-        </li>
-    ));
+    sortPlayers = () => {
+        const sorted = this.state.players.sort((a, b) => {
+			let _a = a.name.toLowerCase();
+			let _b = b.name.toLowerCase();
+			if (_a < _b) return -1;
+			if (_a > _b) return 1;
+            return 0;
+        }
+    )};
     render() {
         return (
             <div>
                 <ul>
-                    {this.renderPlayers()}
+                    {this.state.players.map((player, i) => (
+                        <li key={player.name + i}>
+                            {player.name}
+                        </li>
+                    ))}
                 </ul>
             </div>
         );
