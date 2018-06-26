@@ -19,7 +19,7 @@ const PointsDefinition = props => {
             <p>{props.type}:</p>
             <EditableField 
                 value={props.weight} 
-                onUpdate={text => props.onUpdate(props.type, text)}
+                onUpdate={text => props.onUpdate(props.type, text || 0)}
             />
         </PointDefRow>
     );
