@@ -56,7 +56,6 @@ class PlayerSettings extends React.Component {
         const promises = this.state.playersAdded.map(player => this.addPlayerToLeague(player));
         Promise.all(promises)
             .then(res => {
-                console.log('POST players res: ', res);
                 this.setState({
                     activeComponent: 0
                 });
@@ -68,11 +67,7 @@ class PlayerSettings extends React.Component {
     }
     addPlayerToLeague = player => {
         return axios.post(`${API_BASE_URL}/leagues/${this.props.leagueId}/players`, player)
-            
     }
-    // componentDidUpdate() {
-    //     console.log('PlayerSettings state: ', this.state)
-    // }
     render() {
         const players = this.state.playersAdded.map((data, i) => (
             <li 
