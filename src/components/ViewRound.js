@@ -59,7 +59,6 @@ class ViewRound extends React.Component {
         // GET league players for name lookup
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
-                console.log('GET league players res: ', res.data.players)
                 this.setState({
                     leaguePlayers: res.data.players
                 });
@@ -70,7 +69,6 @@ class ViewRound extends React.Component {
         //GET round details
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}/round/${this.state.roundId}`)
             .then(res => {
-                console.log('get round info: ',res.data)
                 const data = res.data;
                 const name = data.name;
                 const course = data.course;
@@ -122,7 +120,7 @@ class ViewRound extends React.Component {
         axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/${this.state.roundId}/points-allocation/${playerId}`, points)
             .then(res => {
                 this.setState({
-                    pointsInput: ''
+                    pointsInput: this.state.pointsInput || ''
                 });
                 this.getPlayerPoints();
             })
@@ -156,8 +154,8 @@ class ViewRound extends React.Component {
                         ))}
                     </tbody>
                 </table>
-                <p className="inline-p">Enter and save the total points earned in this round for each player.</p><br />
-                <p style={{fontStyle: 'italic'}}><span>NOTE:</span> Saving a new total for a player that has already had one set will cause the previous total to be overridden</p>
+                <p className="inline-p">Save the total points earned in this round for each player</p><br />
+                <p style={{fontStyle: 'italic'}}><span>NOTE:</span> Saving a new total for a player that has a current total will cause the current total to be overwritten</p>
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
                             {this.state.leaguePlayers.map((_player) => (
