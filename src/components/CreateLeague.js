@@ -2,6 +2,7 @@ import React from 'react';
 import BasicSettings from './BasicSettings';
 import PointSettings from './PointSettings';
 import PlayerSettings from './PlayerSettings';
+import PrizeSettings from './PrizeSettings';
 import styled from 'styled-components';
 
 const Style = styled.div`
@@ -10,7 +11,6 @@ const Style = styled.div`
     padding: 10px;
     border: 2px solid #b8eac8;
     border-radius: 5px;
-    /* background-color: #e8dda7; */
     background-color: #b8eac8;
     overflow: hidden;
     h2 {
@@ -34,7 +34,6 @@ const Style = styled.div`
     }
     button.done {
         margin: 15px 0 5px;
-        float: right;
     }
     div.section-container {
         background-color: white;
@@ -89,14 +88,12 @@ class CreateLeague extends React.Component {
     handlePlayerSave = () => {
         this.refs.childPlayer.updateActiveComponent(1);
     }
-    componentDidUpdate() {
-        console.log('CreateLeague activeComponent: ', this.state.activeComponent)
-    }
     render() {
         return (
             <Style>
                 <div>
                     <h2>Create League</h2>
+                    <i><p>Ensure that each section is correct before continuing</p></i>
                     <BasicSettings 
                         onSave={this.handleBasicSave} 
                     />
@@ -109,6 +106,11 @@ class CreateLeague extends React.Component {
                         leagueId={this.state.leagueId} 
                         ref="childPlayer"
                     />
+                    {/* TODO: Fully implement component and back-end 
+                    <PrizeSettings
+                        leagueId={this.state.leagueId} 
+                        ref="childPrize"
+                    /> */}
                     <button className="done" onClick={() => window.history.back()}>Done</button>
                 </div>
             </Style>
