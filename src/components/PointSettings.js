@@ -44,28 +44,33 @@ class PointSettings extends React.Component {
     }
     onUpdate = (type, weight) => {
         const indexOfPointType = this.state.pointsDefinitions.findIndex(obj => obj.type === type);
-        // TODO: Does this do anything anymore? Seems like it's messing with the input value
-        // const cachedSetting = clone(this.state.pointsDefinitions[indexOfPointType]);
-        // console.log('cachedSetting: ', cachedSetting)
+    
+        const cachedSetting = clone(this.state.pointsDefinitions[indexOfPointType]);
+        console.log('cachedSetting: ', cachedSetting)
         const newPointsDefinition = 
             Object.assign({...this.state.pointsDefinitions[indexOfPointType]}, 
-                { type: type, weight: weight})
+                { type: type, weight: weight } || cachedSetting)
         this.setState({
             pointsDefinitions: [...this.state.pointsDefinitions.slice(0, indexOfPointType), newPointsDefinition, ...this.state.pointsDefinitions.slice(indexOfPointType + 1)]
         });
     }
     addDefinition = () => {
-        this.setState({
-            leagueId: this.props.leagueId
-        });
-        const newDefinition = {
-            type: this.state.input,
-            weight: 0
+        if (this.state.input === '') {
+            alert('Please enter a name for each point type')
+        } else {
+            this.setState({
+                leagueId: this.props.leagueId
+            });
+            const newDefinition = {
+                type: this.state.input,
+                weight: 0
+            }
+            this.setState({
+                pointsDefinitions: [...this.state.pointsDefinitions, newDefinition],
+                input: ''
+            });
         }
-        this.setState({
-            pointsDefinitions: [...this.state.pointsDefinitions, newDefinition],
-            input: ''
-        });
+        
         this.input.focus()
     }
     renderDefinitions = () => {
@@ -104,7 +109,7 @@ class PointSettings extends React.Component {
                     className="add-button"
                     disabled={this.state.activeComponent === 0 ? true : false}
                 >
-                    Add Points
+                    Add Point Type
                 </button>
 
                 {this.renderDefinitions()}
