@@ -54,8 +54,8 @@ const Style = styled.div`
         padding: 10px;
     }
     @media (max-width: 768px) {
-        input {
-            width: 95%;
+        input[type="text"] {
+            width: 85%;
         }
         input[type="date"] {
             width: 50%;
@@ -63,8 +63,8 @@ const Style = styled.div`
         width: 85%;
     }
     @media (max-width: 668px) {
-        input {
-            width: 95%;
+        input[type="text"] {
+            width: 90%;
         }
         input[type="date"] {
             width: 70%
@@ -73,7 +73,7 @@ const Style = styled.div`
         font-size: .85em;
     }
     @media (max-width: 468px) {
-        input {
+        input[type="text"] {
             width: 95%;
         }
         input[type="date"] {
