@@ -1,5 +1,5 @@
 # Clash for the Cup 
-(this repo is for the front-end. Click here to go to the back-end repo)
+This repo is for the front-end. [Click here] (https://github.com/RoundEm/Clash_for_the_Cup_back-end) to go to the back-end repo.
 
 ## <Link to live app on Netlify>
  
