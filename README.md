@@ -1,7 +1,7 @@
 # Clash for the Cup 
 This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_for_the_Cup_back-end) to go to the back-end repo.
 
-## <Link to live app on Netlify>
+## TODO: Insert link to live app on Netlify
  
 ## API Routes
 - POST league: /league
@@ -24,12 +24,15 @@ This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_fo
 - HTML
 - CSS
 - Node
+- Express
 - Mongo/Mongoose
 - Mocha
-- Chai
+- Chai/ChaiHttp
 - Enzyme
 - Jest
+- React Router
 - Styled Components
+- axios
 - Responsive design
 - Accessibility
 
