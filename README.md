@@ -18,6 +18,15 @@ This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_fo
 - GET point allocations for all players in a round: /leagues/:leagueId/:roundId/points-allocation
 - GET point allocations for all players in league: /leagues/:leagueId/points-allocation
 
+## Images of App:
+![alt text](/app_screenshots/Home.png "Home page")
+![alt text](/app_screenshots/Create_League.png "Create a New League page")
+![alt text](/app_screenshots/Dashboard.png "Dashboard page")
+![alt text](/app_screenshots/League_Details_1.png "League Details (1st half of page)")
+![alt text](/app_screenshots/League_Details_2.png "League Details (1st half of page)")
+![alt text](/app_screenshots/Create_Round.png "Create a New Round page")
+![alt text](/app_screenshots/View-Edit-Round.png "View/Edit Round page")
+
 ## Technologies Used
 - Javascript
 - React
