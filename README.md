@@ -16,7 +16,7 @@ This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_fo
 - GET round: /leagues/:leagueId/round/:roundId
 - POST point allocation for a player in a round: /leagues/:leagueId/:roundId/points-allocation/:playerId
 - GET point allocations for all players in a round: /leagues/:leagueId/:roundId/points-allocation
-- GET point allocations for all players in league: /leagues/:id/points-allocation
+- GET point allocations for all players in league: /leagues/:leagueId/points-allocation
 
 ## Technologies Used
 - Javascript
