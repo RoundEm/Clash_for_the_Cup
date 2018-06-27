@@ -8,7 +8,12 @@ describe('<EditableField />', () => {
         shallow(<EditableField />);
     });
 
-    // it('onClose method should toggle `editable` state', () => {
+    // it('Should toggle `editable` state' when onClose method is called', () => {
 
     // });
+
+    // it('Should call something when edit point input button is closed', () => {
+
+    // });
+
 });

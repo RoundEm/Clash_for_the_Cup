@@ -25,7 +25,7 @@ class RenderPlayers extends React.Component {
             });
     }
     sortPlayers = () => {
-        const sorted = this.state.players.sort((a, b) => {
+        this.state.players.sort((a, b) => {
 			let _a = a.name.toLowerCase();
 			let _b = b.name.toLowerCase();
 			if (_a < _b) return -1;

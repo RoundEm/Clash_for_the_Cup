@@ -42,7 +42,6 @@ class Players extends React.Component {
         });
     }
     renderPlayers = () => this.state.playersInLeague.map((player, i) => (
-        console.log('renderPlayers: ', player),
         <li 
             key={player.name + i}
             onClick={() => this.handleClick(player)}

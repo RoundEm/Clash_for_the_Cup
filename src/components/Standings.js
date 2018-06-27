@@ -1,6 +1,4 @@
 import React from 'react';
-const axios = require('axios');
-const { API_BASE_URL } = require('../config');
 
 const Standings = props => {
   return (

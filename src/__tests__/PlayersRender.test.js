@@ -8,11 +8,11 @@ describe('<PlayersRender />', () => {
         shallow(<PlayersRender />);
     });
 
-    // it('calls componentDidMount', () => {
+    // it('Should set players state when props.players is passed in', () => {
 
     // });
 
-    // it('renders players', () => {
+    // it('renders a list item for each player in players state array', () => {
         
     // });
 });

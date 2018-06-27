@@ -19,7 +19,7 @@ const Field = styled.div`
     input {
         height: 25px;
         display: inline-block;
-        /* width: 15%; */
+        width: 50px;
         font-size: 1em;
     }
     p {

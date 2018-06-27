@@ -2,7 +2,6 @@ import React from 'react';
 import BasicSettings from './BasicSettings';
 import PointSettings from './PointSettings';
 import PlayerSettings from './PlayerSettings';
-import PrizeSettings from './PrizeSettings';
 import styled from 'styled-components';
 
 const Style = styled.div`

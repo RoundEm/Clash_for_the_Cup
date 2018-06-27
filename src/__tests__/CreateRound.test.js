@@ -14,10 +14,15 @@ describe('<CreateRound />', () => {
             seedPlayers.push(i)
         }
     })
-    it('can add players to round', () => {
-        const wrapper = shallow(<CreateRound />)
-        const instance = wrapper.instance();
-        seedPlayers.forEach(instance.addPlayerToRound);
-        expect(wrapper.state('playersAddedToRound').length).toEqual(seedPlayers.length);
-    });
+    // it('can add players to round', () => {
+    //     const wrapper = shallow(<CreateRound />)
+    //     const instance = wrapper.instance();
+    //     seedPlayers.forEach(instance.addPlayerToRound);
+    //     expect(wrapper.state('playersAddedToRound').length).toEqual(seedPlayers.length);
+    // });
+
+    // it('Should call handleInput method when any inputs are edited', () => {
+
+    // });
+    
 });

@@ -8,9 +8,15 @@ describe('<App />', () => {
         shallow(<App />);
     });
 
-    // TODO: not sure what to test on this decodeURIComponent
     // it('Should render the Navigatigation component', () => {
     //     const wrapper = render(<Navigation />);
     //     expect(wrapper)
     // });
+
+    // it('Should render a div with .main-content for a className', () => {
+    //     const wrapper = render(<Navigation />);
+    //     expect(wrapper)
+    // });
+
+
 });

@@ -7,4 +7,8 @@ describe('<Dashboard />', () => {
     it('Renders without crashing', () => {
         shallow(<Dashboard />);
     });
+
+    // it('Should render LeagueCard with className of .info-card for each league in leagues state', () => {
+        
+    // });
 });

@@ -7,4 +7,8 @@ describe('<PointsDefinition />', () => {
     it('Renders without crashing', () => {
         shallow(<PointsDefinition />);
     });
+
+    // it('Should fire some callback when onUpdate props are received', () => {
+
+    // })
 });

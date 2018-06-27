@@ -8,7 +8,20 @@ describe('<ActiveLeague />', () => {
         shallow(<ActiveLeague />);
     });
 
-    // TODO: not sure what to test on this decodeURIComponent
-    // it('Should ')
+    // it('Should render a points table when point definitions exist', () => {
+    //     const wrapper = mount(<ActiveLeague />);
+    //     if (wrapper.state().points.length === 0) {
+    //         expect(wrapper.find('table').children()).to.have.legnth(0)
+    //     }
+    // });
+
+    // it('Should sort point weights from highest to lowest value, () => {
+    //     const wrapper = shallow(<ActiveLeague />);
+    //     wrapper.find('')
+    // });
 });
 
+// expect(<variable name assigned to component being tested>.find('className').text()).toBe('String passed in')
+
+// componentWrapper.instance().handleChange({ target: {value: 'Some text'}})
+// expect(componentWrapper.state().toDo).toBe('Some text)

@@ -38,7 +38,6 @@ class PointSettings extends React.Component {
             });
     }
     addPointDefinitionToLeague = point => {
-        
         // POST Points
         return axios.post(`${API_BASE_URL}/leagues/${this.state.leagueId}/point-weighting`, point)
     }
@@ -70,7 +69,6 @@ class PointSettings extends React.Component {
                 input: ''
             });
         }
-        
         this.input.focus()
     }
     renderDefinitions = () => {
@@ -82,9 +80,6 @@ class PointSettings extends React.Component {
                 onUpdate={this.onUpdate}
             />
         ));
-    }
-    componentDidUpdate() {
-        console.log('PointSettings this.state: ',this.state)
     }
     render() {
         return (

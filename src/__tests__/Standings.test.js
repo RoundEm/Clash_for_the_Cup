@@ -7,4 +7,9 @@ describe('<Standings />', () => {
     it('Renders without crashing', () => {
         shallow(<Standings />);
     });
+
+    // it('Should do something with points props or players props', () => {
+
+    // });
+    
 });

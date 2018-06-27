@@ -38,14 +38,10 @@ class BasicSettings extends React.Component {
                 .catch(err => {
                     console.log(err);
                 });
-            
         }
     }
     passDataToParent = leagueId => {
         this.props.onSave(leagueId);
-    }
-    componentDidUpdate() {
-        console.log('Basic settings state: ', this.state)
     }
     render() {
         return (

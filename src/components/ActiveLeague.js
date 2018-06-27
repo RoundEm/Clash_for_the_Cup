@@ -61,8 +61,7 @@ class ActiveLeague extends React.Component {
         });
     }
     calculatePointTotals = data => {
-        // TODO: update so that NaN isn't returned if no total is set???
-        // Create array with total points for each player
+        // Create array with points from each round reduced to a total for each player
         let totalPoints = []
         data.reduce((accumulator, player) => {
             if(!accumulator[player.player]) {
@@ -79,7 +78,6 @@ class ActiveLeague extends React.Component {
             pointTotals: totalPoints
         })
         this.sortPointTotals();
-        
     }
     sortPointTotals = () => {
         let sortedPoints = this.state.pointTotals.sort((a, b) => (
@@ -157,7 +155,6 @@ class ActiveLeague extends React.Component {
                     : this.state.deleteMsg
                 }</p>
             </div>
-            
         );
     }
 }

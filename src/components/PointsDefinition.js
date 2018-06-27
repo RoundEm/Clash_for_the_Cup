@@ -16,7 +16,7 @@ const PointDefRow = styled.div`
 const PointsDefinition = props => {
     return (
         <PointDefRow>
-            <p>{props.type}:</p>
+            <p>{props.type}</p>
             <EditableField 
                 value={props.weight} 
                 onUpdate={text => props.onUpdate(props.type, text || 0)}

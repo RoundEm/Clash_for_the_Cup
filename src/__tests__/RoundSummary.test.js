@@ -8,5 +8,7 @@ describe('<RoundSummary />', () => {
         shallow(<RoundSummary />);
     });
 
-    
+    // it('Should do render a RoundCard for each round passed down through props.rounds', () => {
+
+    // });
 });

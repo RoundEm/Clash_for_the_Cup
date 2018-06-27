@@ -8,5 +8,11 @@ describe('<PlayersRound />', () => {
         shallow(<PlayersRound />);
     });
 
-    
+    // it('Should do something with roundDate props', () => {
+
+    // });
+
+    // it('Should render a list of players equal to the number of players in playersAddedToRound', () => {
+
+    // });
 });
