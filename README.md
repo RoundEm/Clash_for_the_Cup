@@ -42,5 +42,4 @@ This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_fo
 - Allow user to email invitation to other players
 - Allow user to enter and track points earned under each point type
 - Allow decimals to be entered into point weights
-- Add some images
 
