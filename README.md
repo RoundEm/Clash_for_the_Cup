@@ -2,7 +2,10 @@
 This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_for_the_Cup_back-end) to go to the back-end repo.
 
 ## TODO: Insert link to live app on Netlify
- 
+
+## Summary of App
+This app allows you to create points-based golfing leagues for you and your friends and social groups. You can establish points for custom criteria and accomplishments achieved during each round played. The goal is to earn the most points during a season (for fellow golfers, think Fed-Ex Cup points on the PGA Tour) and have more incentive to continuously improve your game.
+
 ## API Routes
 - POST league: /league
 - GET all leagues: /leagues
@@ -45,7 +48,7 @@ This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_fo
 - Responsive design
 - Accessibility
 
-## Enchancements for the Future
+## Enchancements I'd like to make in the future
 - Add user authentication
 - Allow user to make updates to players and point settings
 - Allow user to email invitation to other players
