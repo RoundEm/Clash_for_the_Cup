@@ -8,17 +8,29 @@ This app allows you to create points-based golfing leagues for you and your frie
 
 ## API Routes
 **POST league: -** /league
+
 **GET all leagues: -** /leagues
+
 **GET league: -** /leagues/:leagueId
+
 **DELETE league: -** /leagues/:id
+
 **POST league players: -** /leagues/:leagueId/players
+
 **GET league players: -** /leagues/:leagueId/players
+
 **POST point definitions: -** /leagues/:leagueId/point-weighting
+
 **GET point definitions: -** /leagues/:leagueId/point-weighting
+
 **POST round: -** /leagues/:leagueId/round
+
 **GET round: -** /leagues/:leagueId/round/:roundId
+
 **POST point allocation for a player in a round: -** /leagues/:leagueId/:roundId/points-allocation/:playerId
+
 **GET point allocations for all players in a round: -** /leagues/:leagueId/:roundId/points-allocation
+
 **GET point allocations for all players in league: -** /leagues/:leagueId/points-allocation
 
 ## Images of App:
