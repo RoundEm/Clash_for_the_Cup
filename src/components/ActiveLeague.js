@@ -2,7 +2,7 @@ import React from 'react';
 import PlayersRender from './PlayersRender';
 import RoundSummary from './RoundSummary';
 import Standings from './Standings';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 const axios = require('axios');
 const { API_BASE_URL } = require('../config');
 const moment = require('moment');

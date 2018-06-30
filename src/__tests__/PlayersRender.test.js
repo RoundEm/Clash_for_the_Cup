@@ -12,7 +12,7 @@ describe('<PlayersRender />', () => {
 
     // });
 
-    // it('renders a list item for each player in players state array', () => {
+    // it('renders a list item for each player in players state', () => {
         
     // });
 });

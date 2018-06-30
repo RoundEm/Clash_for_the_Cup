@@ -12,7 +12,10 @@ const Standings = props => {
           {props.points.map((player, i) => (
               <tr key={player + i}>
                 <td>{props.players.map((_player) => (
-                  _player._id === player.id ? _player.name : ''))}</td>
+                  _player._id === player.id 
+                    ? _player.name 
+                    : ''))}
+                </td>
                 <td>{player.total}</td>
               </tr>
           ))}

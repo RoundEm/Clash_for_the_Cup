@@ -8,20 +8,18 @@ describe('<ActiveLeague />', () => {
         shallow(<ActiveLeague />);
     });
 
-    // it('Should render a points table when point definitions exist', () => {
-    //     const wrapper = mount(<ActiveLeague />);
-    //     if (wrapper.state().points.length === 0) {
-    //         expect(wrapper.find('table').children()).to.have.legnth(0)
-    //     }
+    // it('Should call handleDeleteLeague when .delete button is clicked', () => {
+    //     const wrapper = shallow(<ActiveLeague />);
+    //     wrapper.find('.delete').simulate('click');
+    //     expect(wrapper.instance().handleDeleteLeague()).toHaveBeenCalled();
     // });
 
     // it('Should sort point weights from highest to lowest value, () => {
     //     const wrapper = shallow(<ActiveLeague />);
     //     wrapper.find('')
     // });
+
+    // it('Should ensure that state is updated when league ajax data is returned', () {
+    //     mock network res and ensure that state is updated
+    // })
 });
-
-// expect(<variable name assigned to component being tested>.find('className').text()).toBe('String passed in')
-
-// componentWrapper.instance().handleChange({ target: {value: 'Some text'}})
-// expect(componentWrapper.state().toDo).toBe('Some text)

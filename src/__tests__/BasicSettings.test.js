@@ -8,10 +8,6 @@ describe('<BasicSettings />', () => {
         shallow(<BasicSettings />);
     });
 
-    // it('Should do something with props in passDataToParent method?', () => {
-        
-    // });
-
     // it('Should set the backgroundColor of the div with the .section-container class to be #e8ebef if this.state.activeComponent equals 1', () => {
         
     // });

@@ -7,5 +7,4 @@ describe('<Navigation />', () => {
     it('Renders without crashing', () => {
         shallow(<Navigation />);
     });
-    
 });
