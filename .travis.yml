@@ -2,6 +2,13 @@ language: node_js
 node_js: node
 cache:
   directories:
-    - node_modules
+  - node_modules
 env:
-  - CI=true
+- CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: SOaGPxSk9EkJq2YLwOPyB2PuweOOtk+rsiSif4jGHYiL1sOC8gmaUEWNgbg38iwCHOq3uwBE1Mshlxi6xIXCAJuiUFuJUAZyphRZlpWFZtJjQtsYmiF3q3kfkgSZYueVXvbzYaxrW4NImmxAxRSauYUPwcpYZGXtb8JhYJTTTLxvm21QtJ/04gDmsC5phWhVena56LdbqzrGLEk2uSh86np6Bo6C6dX/yXyokWBQ8InmL+OQTlLKJqLJ1alh2HpaKC7qFcrUsfJnnQVLf+DMl0HP1jxCecwlYprGQdS3Cg8HOuyQgrQF2dxz3fqUiJQ/CCBx5YVujq19vVZFxPVuNWrf5B1VDhHs/6YVufZtv/ZZN5dT9zJwGgYF6SYj47n6h9F6E9sDNFySFrYGvOEuwrsBrqNSie9gvp3caKp6SCZImy4FR/zj9KU38030q4olLv2CsDHhsqMUHZOzhKManHlBxWhhi0UZekywlEgjE3NtoOOaKgR7aF/Lve65EClaqhmIpAKpuPNrBJG+mrNEPIQEhmHAnwnvBRqabTcxlHZQ9/+qd2sHVDzHy+o73qC1P/SfeTWLQfe2zEc3/9uYNipK7ugYmp1ra+voH6lDguDsWle9wfcq2firhBTHovRooiyXquGICAgdj3Tm6aYq0p8yA5adANoPSfY/mwZEw+o=
+  app: clash-for-the-cup
+  on:
+    repo: RoundEm/Clash_for_the_Cup
