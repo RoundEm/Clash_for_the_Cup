@@ -1,6 +1,9 @@
 {
   "name": "clash_for_the_cup",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.2.0"
+  },
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
