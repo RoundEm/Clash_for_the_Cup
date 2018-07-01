@@ -6,6 +6,33 @@ This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_fo
 ## Summary of App
 This app allows you to create points-based golfing leagues for you and your friends and social groups. You can establish points for custom criteria and accomplishments achieved during each round played. The goal is to earn the most points during a season (for fellow golfers, think Fed-Ex Cup points on the PGA Tour) and have more incentive to continuously improve your game.
 
+## Technologies and methodologies used:
+- Javascript
+- React
+- HTML
+- CSS
+- Express/Node
+- RESTful API
+- MongoDB/Mongoose
+- Mocha
+- Chai/Chai-http
+- Enzyme
+- Jest
+- React Router
+- Styled Components
+- axios
+- Responsive design
+- Accessibility
+
+## Images of App:
+![alt text](/app_screenshots/Home.png "Home page")
+![alt text](/app_screenshots/Create_League.png "Create a New League page")
+![alt text](/app_screenshots/Dashboard.png "Dashboard page")
+![alt text](/app_screenshots/League_Details_1.png "League Details (1st half of page)")
+![alt text](/app_screenshots/League_Details_2.png "League Details (1st half of page)")
+![alt text](/app_screenshots/Create_Round.png "Create a New Round page")
+![alt text](/app_screenshots/View-Edit-Round.png "View/Edit Round page")
+
 ## API Routes
 **POST league: -** /league
 
@@ -32,33 +59,6 @@ This app allows you to create points-based golfing leagues for you and your frie
 **GET point allocations for all players in a round: -** /leagues/:leagueId/:roundId/points-allocation
 
 **GET point allocations for all players in league: -** /leagues/:leagueId/points-allocation
-
-## Images of App:
-![alt text](/app_screenshots/Home.png "Home page")
-![alt text](/app_screenshots/Create_League.png "Create a New League page")
-![alt text](/app_screenshots/Dashboard.png "Dashboard page")
-![alt text](/app_screenshots/League_Details_1.png "League Details (1st half of page)")
-![alt text](/app_screenshots/League_Details_2.png "League Details (1st half of page)")
-![alt text](/app_screenshots/Create_Round.png "Create a New Round page")
-![alt text](/app_screenshots/View-Edit-Round.png "View/Edit Round page")
-
-## Technologies and methodologies used:
-- Javascript
-- React
-- HTML
-- CSS
-- Node
-- Express
-- Mongo/Mongoose
-- Mocha
-- Chai/ChaiHttp
-- Enzyme
-- Jest
-- React Router
-- Styled Components
-- axios
-- Responsive design
-- Accessibility
 
 ## Enchancements I'd like to make in the future
 - Add user authentication
