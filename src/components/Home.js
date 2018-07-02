@@ -63,8 +63,8 @@ const Home = () => {
                 <p>Improve your game as you battle your opponents over the course of a season while trying to earn the most points!</p>
             </div>   
             <div className="buttons">  
-                <button className="home-button"><Link to="/dashboard/create-league">Create League</Link></button>
-                <button className="home-button"><Link to="/dashboard">Manage Existing League</Link></button>
+                <Link to="/dashboard/create-league"><button className="home-button">Create League</button></Link>
+                <Link to="/dashboard"><button className="home-button">Manage Existing League</button></Link>
             </div>
         </Style>
     );
