@@ -1,7 +1,7 @@
 # Clash for the Cup 
 This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_for_the_Cup_back-end) to go to the back-end repo.
 
-### Live app: https://clash-for-the-cup.herokuapp.com/home
+### Live app: https://clash-for-the-cup.herokuapp.com
 
 ## Summary of App
 Create your own golfing leagues and compete against your friends and social groups. Establish points for custom criteria and accomplishments achieved during each round played. Battle your opponents to try and earn the most points during a season (for fellow golfers, think Fed-Ex Cup<sup>&#174;</sup> points on the PGA Tour<sup>&#174;</sup>) while incentivizing yourself to continuously improve your game!
