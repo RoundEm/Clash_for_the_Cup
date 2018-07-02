@@ -155,7 +155,7 @@ class ViewRound extends React.Component {
                     </tbody>
                 </table>
                 <p className="inline-p">Save the total points earned in this round for each player</p><br />
-                <p style={{fontStyle: 'italic'}}><span>NOTE:</span> Saving a new total for a player that has a current total will cause the current total to be overwritten</p>
+                <p style={{fontStyle: 'italic'}}><span>NOTE:</span> Save each player's total one-at-a-time. Saving a new total for a player that has a current total will cause the current total to be overwritten</p>
                     {this.state.players.map((player, i) => (
                         <div className="player-list" key={player + i}>
                             {this.state.leaguePlayers.map((_player) => (
