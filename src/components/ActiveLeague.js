@@ -100,7 +100,6 @@ class ActiveLeague extends React.Component {
         if (answer) {
             axios.delete(`${API_BASE_URL}/leagues/${id}`)
                 .then(res => {
-                    console.log(res);
                     this.setState({
                         deleteMsg: 'This league has successfully been deleted'
                     })
@@ -125,7 +124,7 @@ class ActiveLeague extends React.Component {
                     players={this.state.players}
                 />
                 <h3>Rounds:</h3>
-                <button><Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}>Create New Round</Link></button>
+                <Link to={`/dashboard/leagues/${this.state.leagueId}/create-round`}><button>Create New Round</button></Link>
                 <RoundSummary 
                     rounds={this.state.rounds}
                     league={this.state.leagueId}

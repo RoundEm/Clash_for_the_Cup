@@ -45,7 +45,6 @@ class PrizeSettings extends React.Component {
         const promises = this.state.prizesAdded.map(prize => this.addPrizesToLeague(prize));
         Promise.all(promises)
             .then(res => {
-                console.log('POST players res: ', res);
                 this.setState({
                     activeComponent: 0
                 });

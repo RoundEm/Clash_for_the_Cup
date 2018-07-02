@@ -100,7 +100,6 @@ class CreateRound extends React.Component {
         axios.get(`${API_BASE_URL}/leagues/${this.state.leagueId}`)
             .then(res => {
                 const playersInLeague = res.data.players;
-                console.log('playersInLeague: ', playersInLeague);
                 this.setState({
                     playersInLeague
                 });
