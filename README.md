@@ -62,11 +62,12 @@ Create your own golfing leagues and compete against your friends and social grou
 
 ## Enchancements/updates/fixes I'd like to make in the future
 - Add user authentication
+- Add more styling and images
 - Allow user to make updates to players and point settings
-- Allow user to email invitation to other players
 - Allow user to enter and track points earned under each point type
 - Allow decimals to be entered into point weights
-- Refactor the app to use redux or at the very list create more simplified components and lift a lot of the state up
+- Allow user to send emails to other players to invite them to league
+- Refactor the app to use redux or at the very least create more simplified components and lift a lot of the state up
 - Move some functions (e.g. sorting, ajax calls, etc.) into a stand-alone utilities file instead of polluting the components
 - Fix round points input so that saving a player's total only saves the input corresponding to that player instead of the last input edited
 - Add more client-side tests
