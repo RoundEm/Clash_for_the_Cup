@@ -1,10 +1,10 @@
 # Clash for the Cup 
 This repo is for the front-end. [Click here](https://github.com/RoundEm/Clash_for_the_Cup_back-end) to go to the back-end repo.
 
-### TODO: Link to live app: 
+### Live app: https://clash-for-the-cup.herokuapp.com
 
 ## Summary of App
-This app allows you to create points-based golfing leagues for you and your friends and social groups. You can establish points for custom criteria and accomplishments achieved during each round played. The goal is to earn the most points during a season (for fellow golfers, think Fed-Ex Cup points on the PGA Tour) and have more incentive to continuously improve your game.
+Create your own golfing leagues and compete against your friends and social groups. Establish points for custom criteria and accomplishments achieved during each round played. Battle your opponents to try and earn the most points during a season (for fellow golfers, think Fed-Ex Cup<sup>&#174;</sup> points on the PGA Tour<sup>&#174;</sup>) while incentivizing yourself to continuously improve your game!
 
 ## Technologies and methodologies used:
 - Javascript
@@ -60,10 +60,16 @@ This app allows you to create points-based golfing leagues for you and your frie
 
 **GET point allocations for all players in league: -** /leagues/:leagueId/points-allocation
 
-## Enchancements I'd like to make in the future
+## Enchancements/updates/fixes I'd like to make in the future
 - Add user authentication
+- Add more styling and images
 - Allow user to make updates to players and point settings
-- Allow user to email invitation to other players
 - Allow user to enter and track points earned under each point type
 - Allow decimals to be entered into point weights
+- Allow user to send emails to other players to invite them to league
+- Refactor the app to use redux or at the very least create more simplified components and lift a lot of the state up
+- Move some functions (e.g. sorting, ajax calls, etc.) into a stand-alone utilities file instead of polluting the components
+- Fix round points input so that saving a player's total only saves the input corresponding to that player instead of the last input edited
+- Add more client-side tests
+
 
