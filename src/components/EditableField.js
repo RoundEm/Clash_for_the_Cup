@@ -1,6 +1,6 @@
 import React from 'react';
 import editIcon from '../assets/edit_light.png';
-import saveIcon from '../assets/save-file-option.png.png';
+import saveIcon from '../assets/save-file-option.png';
 import styled from 'styled-components';
 
 const Field = styled.div`
