@@ -1,6 +1,6 @@
 import React from 'react';
 import editIcon from '../assets/edit_light.png';
-import closeIcon from '../assets/close_light.png';
+import saveIcon from '../assets/save-file-option.png.png';
 import styled from 'styled-components';
 
 const Field = styled.div`
@@ -51,7 +51,7 @@ class EditableField extends React.Component {
     renderEdits = value => (
         <div>
             <input type="number" value={this.state.input} onChange={this.handleInput} />  
-            <img src={closeIcon} alt="Close icon" onClick={this.onClose} />
+            <img src={saveIcon} alt="Close icon" onClick={this.onClose} />
         </div>
     )
     onClose = () => {
