@@ -25,7 +25,7 @@ Create your own golfing leagues and compete against your friends and social grou
 - Accessibility
 
 ## Images of App:
-![alt text](/app_screenshots/Home.png "Home page")
+![Home Page](/app_screenshots/Home.png "Home page")
 ![alt text](/app_screenshots/Create_League.png "Create a New League page")
 ![alt text](/app_screenshots/Dashboard.png "Dashboard page")
 ![alt text](/app_screenshots/League_Details_1.png "League Details (1st half of page)")
